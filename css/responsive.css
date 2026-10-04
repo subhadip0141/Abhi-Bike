@@ -1,0 +1,597 @@
+@media (min-width: 1600px) {
+  .hero-layout {
+    padding-top: 360px;
+    padding-bottom: 90px;
+    gap: 110px;
+    grid-template-columns: 1fr 420px;
+  }
+  h1 {
+    font-size: 74px;
+  }
+  .hero-description {
+    font-size: 15px;
+  }
+  .booking-card {
+    padding: 30px;
+  }
+  .field {
+    margin-bottom: 18px;
+  }
+  input,
+  select {
+    height: 46px;
+  }
+  .hero-features {
+    margin-top: 48px;
+  }
+}
+@media (max-width: 1279px) {
+  .container {
+    width: calc(100% - 72px);
+  }
+  .hero-layout {
+    gap: 36px;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    padding-top: 280px;
+    padding-bottom: 55px;
+  }
+  h1 {
+    font-size: clamp(39px, 4.5vw, 57px);
+  }
+  .hero-actions {
+    gap: 9px;
+  }
+  .hero-actions .button {
+    padding-inline: 17px;
+    font-size: 12px;
+  }
+  .hero-features {
+    gap: 18px;
+  }
+  .hero-features li {
+    font-size: 9px;
+  }
+  .booking-card {
+    padding: 24px;
+  }
+  .feature-strip li {
+    font-size: 9px;
+    gap: 7px;
+  }
+  .bike-image {
+    height: 190px;
+  }
+  .bike-info {
+    padding: 18px;
+  }
+  .bike-info h3 {
+    font-size: 20px;
+  }
+  .why-grid {
+    gap: 10px;
+  }
+  .why-card {
+    padding: 24px 16px;
+  }
+  .why-card h3 {
+    font-size: 14px;
+  }
+  .experience-copy {
+    width: 45%;
+    padding-right: 30px;
+  }
+}
+@media (max-width: 1023px) {
+  .container {
+    width: calc(100% - 48px);
+  }
+  .desktop-nav {
+    gap: 24px;
+  }
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 24px;
+    padding-top: 265px;
+  }
+  .hero-copy {
+    padding-bottom: 10px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 23px;
+  }
+  .hero-description {
+    font-size: 12px;
+  }
+  .hero-features {
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 27px;
+  }
+  .hero-features li {
+    gap: 7px;
+  }
+  .hero-features .lucide {
+    width: 18px;
+    height: 18px;
+  }
+  .booking-card {
+    padding: 21px;
+  }
+  .booking-heading {
+    gap: 10px;
+  }
+  .booking-heading h2 {
+    font-size: 22px;
+  }
+  .feature-strip ul {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+  }
+  .feature-strip li {
+    justify-content: flex-start;
+    font-size: 10px;
+  }
+  .bike-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .bike-image {
+    height: 240px;
+  }
+  .bike-info h3 {
+    font-size: 24px;
+  }
+  .why-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .why-card {
+    grid-column: span 2;
+    padding: 25px;
+  }
+  .why-card:nth-last-child(-n + 2) {
+    grid-column: span 3;
+  }
+  .why-card h3 {
+    font-size: 16px;
+  }
+  .experience {
+    min-height: 550px;
+  }
+  .experience-copy {
+    width: 47%;
+  }
+  .experience h2 {
+    font-size: 46px;
+  }
+  .section {
+    padding-block: 72px;
+  }
+  .why-section {
+    padding-top: 0;
+  }
+  .steps {
+    gap: 26px;
+  }
+  .steps h3 {
+    font-size: 18px;
+  }
+  .footer-top {
+    gap: 30px;
+  }
+}
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 100px;
+  }
+  .container {
+    width: calc(100% - 40px);
+  }
+  .site-header {
+    top: 16px;
+  }
+  .navbar {
+    min-height: 66px;
+    padding: 12px 17px;
+    border-radius: 16px;
+  }
+  .wordmark {
+    font-size: 29px;
+  }
+  .site-logo {
+    width: 82px;
+  }
+  .brand-line {
+    font-size: 8px;
+  }
+  .desktop-nav,
+  .button-nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .hero {
+    min-height: 100dvh;
+    align-items: flex-start;
+  }
+  .hero-image {
+    height: 790px;
+    object-position: 53% top;
+    object-fit: cover;
+  }
+  .hero-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08),
+      transparent 130px,
+      rgba(0, 0, 0, 0.35) 260px,
+      rgba(0, 0, 0, 0.7) 540px,
+      #0a0a0a 790px
+    );
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 250px;
+    padding-bottom: 35px;
+  }
+  .hero-copy {
+    padding: 0;
+  }
+  .location {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: clamp(34px, 8.3vw, 56px);
+    line-height: 1.12;
+  }
+  .hero-description {
+    font-size: 13px;
+    max-width: 450px;
+    margin-top: 20px;
+  }
+  .hero-actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .hero-actions .button {
+    padding: 12px 17px;
+    min-height: 46px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .hero-actions .lucide {
+    width: 16px;
+    height: 16px;
+  }
+  .hero-features {
+    display: flex;
+    gap: 22px;
+    flex-wrap: nowrap;
+    margin-top: 28px;
+  }
+  .hero-features li {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .hero-features .lucide {
+    width: 20px;
+    height: 20px;
+  }
+  .booking-card {
+    padding: 25px;
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.07),
+        rgba(255, 255, 255, 0.02)
+      ),
+      #111111b3;
+  }
+  .booking-heading {
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .booking-heading h2 {
+    font-size: 25px;
+  }
+  .booking-heading p {
+    font-size: 12px;
+    max-width: 280px;
+  }
+  .field label {
+    font-size: 11px;
+  }
+  input,
+  select {
+    font-size: 16px;
+    height: 48px;
+    padding: 0 10px;
+  }
+  input::placeholder {
+    font-size: 12px;
+  }
+  input[type="date"] {
+    font-size: 12px;
+  }
+  .field {
+    margin-bottom: 17px;
+  }
+  .submit-button {
+    font-size: 13px;
+    min-height: 49px;
+  }
+  .form-note {
+    font-size: 10px;
+  }
+  .feature-strip ul {
+    grid-template-columns: 1fr 1fr;
+    padding-block: 25px;
+    gap: 22px 13px;
+  }
+  .feature-strip li {
+    font-size: 9px;
+    white-space: normal;
+    line-height: 1.5;
+    gap: 9px;
+  }
+  .feature-strip li:last-child {
+    grid-column: span 2;
+  }
+  .section {
+    padding-block: 60px;
+  }
+  .section-heading {
+    margin-bottom: 28px;
+  }
+  .section-heading .eyebrow {
+    font-size: 9px;
+    margin-bottom: 13px;
+  }
+  .section-heading > p:last-child {
+    font-size: 12px;
+  }
+  .bike-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .bike-image {
+    height: 255px;
+    padding: 25px;
+  }
+  .bike-info {
+    padding: 24px;
+  }
+  .bike-info h3 {
+    font-size: 26px;
+  }
+  .bike-category {
+    font-size: 9px;
+  }
+  .bike-info > p:not(.bike-category) {
+    font-size: 12px;
+  }
+  .bike-bottom {
+    gap: 8px;
+    padding-top: 20px;
+    margin-top: 21px;
+  }
+  .bike-bottom > span {
+    font-size: 11px;
+  }
+  .bike-bottom button,
+  .bike-bottom a {
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .section-action {
+    margin-top: 27px;
+  }
+  .why-section {
+    padding-top: 0;
+  }
+  .why-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .why-card,
+  .why-card:nth-last-child(-n + 2) {
+    grid-column: auto;
+    padding: 22px 17px;
+  }
+  .why-card:last-child {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    column-gap: 17px;
+  }
+  .why-card:last-child > .lucide {
+    grid-row: span 2;
+    margin: 0;
+  }
+  .why-card:last-child p {
+    margin-top: 6px;
+  }
+  .why-card > .lucide {
+    margin-bottom: 20px;
+    width: 23px;
+    height: 23px;
+  }
+  .why-card h3 {
+    font-size: 15px;
+  }
+  .why-card p {
+    font-size: 11px;
+  }
+  .experience {
+    min-height: 640px;
+    align-items: flex-end;
+  }
+  .experience > img {
+    object-position: 36% center;
+  }
+  .experience-shade {
+    background: linear-gradient(
+      180deg,
+      transparent 10%,
+      rgba(0, 0, 0, 0.2) 35%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+  }
+  .experience-copy {
+    width: 100%;
+    margin: 0;
+    padding: 35px 25px;
+  }
+  .experience h2 {
+    font-size: 45px;
+  }
+  .experience-copy > p {
+    font-size: 12px;
+    max-width: 310px;
+    margin-top: 16px;
+  }
+  .chips {
+    margin: 21px 0 25px;
+    gap: 7px;
+  }
+  .chips li {
+    font-size: 9px;
+  }
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .steps li {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    column-gap: 15px;
+    padding-top: 25px;
+  }
+  .step-number {
+    grid-row: span 2;
+    margin: 0;
+    font-size: 31px;
+  }
+  .steps h3 {
+    font-size: 20px;
+  }
+  .steps p {
+    font-size: 12px;
+    margin-top: 7px;
+  }
+  .final-cta {
+    padding: 38px 21px;
+  }
+  .final-cta p {
+    font-size: 12px;
+    max-width: 260px;
+    margin: 14px auto 0;
+  }
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+    margin-top: 25px;
+  }
+  .cta-actions .button {
+    width: 100%;
+    max-width: 290px;
+  }
+  .footer {
+    padding-top: 55px;
+    padding-bottom: 80px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+    padding-bottom: 32px;
+  }
+  .footer-brand {
+    grid-column: span 2;
+  }
+  .footer-brand > p {
+    max-width: 300px;
+    margin-top: 18px;
+  }
+  .footer h2 {
+    margin-bottom: 10px;
+  }
+  .footer-contact a,
+  .footer-contact p {
+    font-size: 10px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    padding-block: 20px;
+  }
+  .mobile-book {
+    display: flex;
+    position: fixed;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: 20px;
+    right: 20px;
+    z-index: 20;
+    box-shadow: 0 8px 32px #0008;
+    min-height: 50px;
+  }
+  .mobile-book span {
+    margin-left: auto;
+  }
+  .mobile-book .lucide {
+    margin-right: auto;
+  }
+  .contact-dialog {
+    padding: 38px 25px;
+  }
+}
+@media (max-width: 389px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+  .hero-layout {
+    padding-top: 235px;
+  }
+  .hero-actions .button {
+    padding-inline: 14px;
+    font-size: 10px;
+  }
+  .hero-features {
+    gap: 15px;
+  }
+  .hero-features li {
+    font-size: 8px;
+    gap: 6px;
+  }
+  .booking-card {
+    padding: 21px;
+  }
+  .field-row {
+    gap: 10px;
+  }
+  .why-card {
+    padding: 20px 14px;
+  }
+  .why-card h3 {
+    font-size: 14px;
+  }
+  .experience-copy {
+    padding-inline: 22px;
+  }
+  .mobile-book {
+    left: 16px;
+    right: 16px;
+  }
+}

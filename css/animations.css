@@ -1,0 +1,54 @@
+/* Reveals establish reading order; hover transitions acknowledge interaction. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy {
+    animation: enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .booking-card {
+    animation: enter 0.9s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-ready.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .bike-grid .reveal:nth-child(2) {
+    transition-delay: 60ms;
+  }
+  .bike-grid .reveal:nth-child(3) {
+    transition-delay: 120ms;
+  }
+  .bike-grid .reveal:nth-child(4) {
+    transition-delay: 180ms;
+  }
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal-ready {
+    opacity: 1;
+    transform: none;
+  }
+}

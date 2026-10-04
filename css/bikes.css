@@ -1,0 +1,491 @@
+/* Fleet page extends the shared homepage tokens, cards and glass surfaces. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.fleet-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+}
+.fleet-hero .hero-image {
+  object-position: center 25%;
+}
+.fleet-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      #00000008 5%,
+      transparent 25%,
+      #00000050 55%,
+      #0a0a0a 100%
+    ),
+    linear-gradient(90deg, #00000035, transparent 75%);
+}
+.fleet-hero-copy {
+  padding-top: 240px;
+  padding-bottom: 60px;
+}
+.fleet-hero h1 {
+  font-size: clamp(44px, 5vw, 72px);
+  line-height: 1.08;
+}
+.fleet-hero-copy > p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #e0e0e0;
+  max-width: 570px;
+  margin-top: 22px;
+}
+.fleet-hero-copy > .button {
+  margin-top: 26px;
+}
+.fleet-catalogue {
+  padding-top: 65px;
+}
+.fleet-controls {
+  padding: 13px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff04;
+}
+.fleet-controls[hidden],
+.fleet-empty[hidden],
+.fleet-grid .bike-card[hidden],
+.selected-bike[hidden] {
+  display: none;
+}
+.category-filters {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.filter-button {
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 999px;
+  color: #c4c4c4;
+  min-height: 42px;
+  padding: 10px 19px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.filter-button:hover {
+  background: var(--glass);
+  color: #fff;
+}
+.filter-button.selected {
+  background: #fff;
+  color: #111;
+}
+.fleet-search {
+  width: 260px;
+  flex-shrink: 0;
+}
+.fleet-search input {
+  height: 43px;
+  font-size: 12px;
+  background: #0a0a0a75;
+  border-radius: 999px;
+  padding-inline: 18px;
+}
+.fleet-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 22px 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.fleet-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.fleet-grid .bike-image {
+  height: 290px;
+  padding: 25px;
+}
+.fleet-grid .bike-info {
+  padding: 25px;
+}
+.fleet-grid .bike-info h3 {
+  font-size: 25px;
+  line-height: 1.3;
+  min-height: 65px;
+  max-width: 290px;
+}
+.fleet-grid .bike-category {
+  font-size: 9px;
+}
+.fleet-grid .bike-info > p:not(.bike-category) {
+  font-size: 12px;
+}
+.fleet-grid .bike-bottom {
+  margin-top: 22px;
+  padding-top: 19px;
+}
+.fleet-grid .bike-bottom > span {
+  font-size: 11px;
+}
+.fleet-grid .bike-bottom button,
+.fleet-grid .bike-bottom a {
+  font-size: 12px;
+  min-height: 44px;
+}
+.fleet-empty {
+  border-radius: var(--radius);
+  padding: 65px 25px;
+  text-align: center;
+}
+.fleet-empty > .lucide {
+  width: 35px;
+  height: 35px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.fleet-empty h3 {
+  font-size: 24px;
+}
+.fleet-empty p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 14px 0 24px;
+}
+.fleet-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 20px;
+}
+.fleet-booking {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  align-items: start;
+  gap: 100px;
+  padding-top: 15px;
+}
+.fleet-booking-copy > .eyebrow {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.fleet-booking-copy h2 {
+  font-size: clamp(32px, 3.2vw, 46px);
+}
+.fleet-booking-copy > p:not(.eyebrow):not(.selected-bike) {
+  font-size: 13px;
+  max-width: 425px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 24px;
+}
+.booking-steps {
+  margin-top: 38px;
+  display: grid;
+  gap: 25px;
+}
+.booking-steps li {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+.booking-steps li > span {
+  font-size: 24px;
+  color: #777;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  min-width: 30px;
+}
+.booking-steps h3 {
+  font-size: 16px;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+}
+.booking-steps p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.fleet-booking .booking-card {
+  background: linear-gradient(145deg, #ffffff09, #ffffff02), #111;
+  animation: none;
+}
+.fleet-booking .booking-heading p {
+  max-width: 300px;
+}
+.selected-bike {
+  margin-top: 27px;
+  padding: 15px 18px;
+  border-left: 2px solid var(--green);
+  font-size: 12px;
+  background: #ffffff04;
+  border-radius: 0 var(--input-radius) var(--input-radius) 0;
+}
+.fleet-faq {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  padding-top: 0;
+}
+.faq-list details {
+  border-bottom: 1px solid #ffffff15;
+}
+.faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  list-style: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 550;
+}
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.faq-list summary .lucide {
+  transform: rotate(45deg);
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+.faq-list details[open] summary .lucide {
+  transform: none;
+}
+.faq-list details > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  padding: 0 35px 24px 0;
+  max-width: 560px;
+}
+.faq-list summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+  border-radius: var(--input-radius);
+}
+.fleet-page .footer {
+  border-top: 1px solid #ffffff12;
+}
+@media (max-width: 1279px) {
+  .fleet-controls {
+    gap: 12px;
+  }
+  .filter-button {
+    padding-inline: 13px;
+  }
+  .fleet-search {
+    width: 230px;
+  }
+  .fleet-grid .bike-image {
+    height: 245px;
+  }
+  .fleet-grid .bike-info {
+    padding: 22px;
+  }
+  .fleet-grid .bike-info h3 {
+    font-size: 23px;
+  }
+  .fleet-booking {
+    gap: 65px;
+    grid-template-columns: 1fr 390px;
+  }
+  .fleet-faq {
+    gap: 50px;
+  }
+}
+@media (max-width: 1023px) {
+  .fleet-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 13px;
+    padding: 16px;
+  }
+  .category-filters {
+    justify-content: space-between;
+  }
+  .fleet-search {
+    width: 100%;
+  }
+  .fleet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .fleet-grid .bike-image {
+    height: 260px;
+  }
+  .fleet-booking {
+    gap: 35px;
+    grid-template-columns: 1fr 350px;
+  }
+  .fleet-booking-copy h2 {
+    font-size: 33px;
+  }
+  .booking-steps {
+    gap: 23px;
+  }
+  .booking-steps li {
+    gap: 15px;
+  }
+  .fleet-faq {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .fleet-faq .section-heading {
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .fleet-hero {
+    min-height: 610px;
+  }
+  .fleet-hero .hero-image {
+    height: 100%;
+    object-position: 53% center;
+  }
+  .fleet-hero-copy {
+    padding-top: 270px;
+    padding-bottom: 40px;
+  }
+  .fleet-hero h1 {
+    font-size: clamp(43px, 10.5vw, 59px);
+  }
+  .fleet-hero-copy > p:not(.eyebrow) {
+    font-size: 13px;
+    max-width: 350px;
+    margin-top: 19px;
+  }
+  .desktop-break {
+    display: none;
+  }
+  .fleet-hero-copy > .button {
+    font-size: 12px;
+    min-height: 46px;
+    margin-top: 23px;
+  }
+  .fleet-catalogue {
+    padding-top: 45px;
+  }
+  .fleet-controls {
+    padding: 12px;
+    gap: 12px;
+  }
+  .category-filters {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 3px 2px 7px;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff35 transparent;
+  }
+  .filter-button {
+    font-size: 11px;
+    padding-inline: 15px;
+    min-height: 40px;
+  }
+  .fleet-search input {
+    font-size: 16px;
+    height: 46px;
+  }
+  .fleet-search input::placeholder {
+    font-size: 12px;
+  }
+  .fleet-meta {
+    flex-direction: column;
+    gap: 5px;
+    margin-block: 20px;
+    font-size: 10px;
+  }
+  .fleet-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .fleet-grid .bike-image {
+    height: 265px;
+    padding: 25px;
+  }
+  .fleet-grid .bike-info {
+    padding: 24px;
+  }
+  .fleet-grid .bike-info h3 {
+    font-size: 26px;
+    min-height: 0;
+    max-width: 280px;
+  }
+  .fleet-grid .bike-info > p:not(.bike-category) {
+    font-size: 12px;
+  }
+  .fleet-grid .bike-bottom button,
+  .fleet-grid .bike-bottom a {
+    font-size: 13px;
+    min-height: 44px;
+  }
+  .fleet-booking {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 0;
+  }
+  .fleet-booking-copy h2 {
+    font-size: 34px;
+  }
+  .fleet-booking-copy > p:not(.eyebrow):not(.selected-bike) {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .fleet-booking-copy > .eyebrow {
+    font-size: 9px;
+    margin-bottom: 17px;
+  }
+  .booking-steps {
+    margin-top: 28px;
+    gap: 23px;
+  }
+  .booking-steps li {
+    gap: 19px;
+  }
+  .booking-steps h3 {
+    font-size: 16px;
+  }
+  .booking-steps p {
+    font-size: 11px;
+  }
+  .fleet-faq {
+    padding-top: 0;
+    padding-bottom: 45px;
+  }
+  .faq-list summary {
+    font-size: 13px;
+    padding-block: 21px;
+  }
+  .faq-list details > p {
+    font-size: 12px;
+  }
+  .fleet-empty {
+    padding: 45px 20px;
+  }
+  .fleet-empty h3 {
+    font-size: 22px;
+  }
+  .fleet-page .footer {
+    padding-top: 45px;
+  }
+}

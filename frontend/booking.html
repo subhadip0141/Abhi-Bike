@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f2f7fb" />
+    <meta
+      name="description"
+      content="Book your Darjeeling bike rental with ABHI BIKE RENTAL. Choose your bike, rental dates and pickup location, then send your enquiry on WhatsApp."
+    />
+    <title>Book Your Ride | ABHI BIKE RENTAL, Darjeeling</title>
+    <link rel="icon" href="../assets/images/logo/favicon.png" type="image/png" />
+    <link rel="preload" as="image" href="../assets/images/gallery/trains.webp" type="image/webp" fetchpriority="high" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <script src="../js/vendor/lucide.min.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/booking.js" defer></script>
+    <link rel="stylesheet" href="../css/bikes.css" />
+    <link rel="stylesheet" href="../css/booking.css" />
+    <link rel="stylesheet" href="../css/brand.css" />
+  </head>
+  <body class="booking-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav class="navbar glass container" aria-label="Main navigation">
+        <a class="wordmark" href="index.html">
+          <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
+        </a>
+        <div class="desktop-nav">
+          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          ><a href="about.html">About</a><a href="contact.html">Contact</a>
+        </div>
+        <a class="button button-nav" href="#booking" aria-current="page"
+          ><i data-lucide="message-circle" aria-hidden="true"></i>Book on
+          WhatsApp <span aria-hidden="true">↗</span></a
+        >
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <div id="mobile-menu" class="mobile-menu glass" hidden>
+          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          ><a href="about.html">About</a><a href="contact.html">Contact</a
+          ><a href="#booking">Book on WhatsApp ↗</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero booking-hero" aria-labelledby="hero-title">
+        
+        
+        <div class="hero-layout container">
+          <div class="hero-copy">
+            <div class="booking-intro">
+            <p class="eyebrow location">
+              <i data-lucide="map-pin" aria-hidden="true"></i>SILIGURI, WEST
+              BENGAL
+            </p>
+            <h1 id="hero-title">Book Your<br /><span>Mountain Ride</span></h1>
+            <p class="hero-description">
+              Choose a bike, tell us when you'd like to ride and send your
+              details on WhatsApp. We'll confirm availability, pricing and
+              pickup arrangements.
+            </p>
+            </div>
+            <div class="booking-guide">
+            <h2 class="visually-hidden" id="booking-steps-title">
+              How booking works
+            </h2>
+            <ol class="booking-steps" aria-labelledby="booking-steps-title">
+              <li>
+                <span>01</span>
+                <div>
+                  <h3>Choose Your Bike</h3>
+                  <p>Adventure motorcycle, roadster or scooter.</p>
+                </div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  <h3>Share Your Plans</h3>
+                  <p>Your dates and preferred pickup location.</p>
+                </div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <h3>Confirm on WhatsApp</h3>
+                  <p>Agree on availability and price before you ride.</p>
+                </div>
+              </li>
+            </ol>
+            <a class="booking-back" href="bikes.html"
+              >Browse All Bikes <span aria-hidden="true">↗</span></a
+            >
+            <p
+              class="selected-bike"
+              id="selected-bike"
+              role="status"
+              aria-live="polite"
+              hidden
+            ></p>
+          <div class="booking-photo"><picture>
+          <source
+            type="image/webp"
+            media="(max-width: 767px)"
+            srcset="../assets/images/gallery/trains.webp"
+          />
+          <source
+            type="image/webp"
+            srcset="../assets/images/gallery/trains.webp"
+          />
+          <img
+            class="hero-image"
+            src="../assets/images/gallery/trains.webp"
+            alt="A blue mountain train winding through tea gardens beneath snow-covered peaks at sunset"
+            width="1448"
+            height="1086"
+            fetchpriority="high"
+          />
+        </picture></div>
+            </div>
+          </div>
+          <aside
+            class="booking-card glass"
+            id="booking"
+            aria-labelledby="booking-title"
+          >
+            <div class="booking-heading">
+              <div>
+                <h2 id="booking-title">Book Your Ride</h2>
+                <p>Share your details and we'll contact you on WhatsApp.</p>
+              </div>
+              <span class="booking-icon"
+                ><img class="lucide mountain-icon" src="../assets/images/icons/mountain.png" alt="" aria-hidden="true" width="20" height="20" /></span>
+            </div>
+            <noscript
+              ><p class="form-status">
+                Enable JavaScript to send your booking enquiry on WhatsApp.
+              </p>
+              <style>
+                #booking-form {
+                  display: none;
+                }
+              </style></noscript
+            >
+            <form id="booking-form">
+              <div class="field-row">
+                <div class="field">
+                  <label for="customer-name">Your Name</label
+                  ><input
+                    id="customer-name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Full name"
+                    maxlength="100"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="customer-phone">WhatsApp Number</label
+                  ><input
+                    id="customer-phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="+91 98765 43210"
+                    maxlength="25"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pickup-date">Pickup Date</label
+                  ><input
+                    id="pickup-date"
+                    name="pickupDate"
+                    type="date"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="return-date">Return Date</label
+                  ><input
+                    id="return-date"
+                    name="returnDate"
+                    type="date"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <label for="pickup-location">Pickup Location</label
+                ><input
+                  id="pickup-location"
+                  name="location"
+                  type="text"
+                  autocomplete="street-address"
+                  placeholder="Hotel or location in Siliguri"
+                  maxlength="200"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="bike-select">Select Bike</label
+                ><select id="bike-select" name="bike" required>
+                  <option value="" disabled selected>Choose your ride</option>
+                  <option>Royal Enfield Himalayan 450</option>
+                  <option>Royal Enfield Himalayan 411</option>
+                  <option>Royal Enfield Scram 411</option>
+                  <option>Royal Enfield Hunter 350</option>
+                  <option>Bajaj Pulsar NS160</option>
+                  <option>TVS Ntorq Black Panther Edition</option>
+                  <option>TVS Ntorq Race Edition</option>
+                  <option>Suzuki Burgman 125</option>
+                  <option>Bajaj Avenger</option>
+                </select>
+              </div>
+              <button class="button button-green submit-button" type="submit">
+                <i data-lucide="message-circle" aria-hidden="true"></i>Send on
+                WhatsApp <span aria-hidden="true">↗</span>
+              </button>
+              <p class="form-note">
+                <i data-lucide="lock-keyhole" aria-hidden="true"></i>No payment
+                required to enquire
+              </p>
+              <p
+                id="booking-status"
+                class="form-status"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+            </form>
+          </aside>
+        </div>
+      </section>
+      <section class="feature-strip" aria-label="Rental benefits">
+        <ul class="container">
+          <li>
+            <i data-lucide="message-circle" aria-hidden="true"></i>Easy Booking
+            via WhatsApp
+          </li>
+          <li>
+            <i data-lucide="wallet" aria-hidden="true"></i>Affordable Rental
+            Options
+          </li>
+          <li>
+            <i data-lucide="wrench" aria-hidden="true"></i>Well Maintained Bikes
+          </li>
+          <li>
+            <i data-lucide="route" aria-hidden="true"></i>Local Route Guidance
+          </li>
+          <li>
+            <i data-lucide="headphones" aria-hidden="true"></i>Support in
+            Darjeeling
+          </li>
+        </ul>
+      </section>
+      <section
+        class="fleet-faq booking-faq section container"
+        aria-labelledby="faq-title"
+      >
+        <div class="section-heading reveal">
+          <h2 id="faq-title">Before You Ride</h2>
+          <p>A few details to help you plan.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>
+              How much does a rental cost?<i
+                data-lucide="x"
+                aria-hidden="true"
+              ></i>
+            </summary>
+            <p>
+              Contact us on WhatsApp with your bike and dates for the rental
+              price. Confirm the total price and terms before booking.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Does sending an enquiry confirm my booking?<i
+                data-lucide="x"
+                aria-hidden="true"
+              ></i>
+            </summary>
+            <p>
+              Your form sends a booking enquiry. Your ride is confirmed only
+              after you agree on availability, pricing and pickup details with
+              ABHI on WhatsApp.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Where can I pick up my bike?<i
+                data-lucide="x"
+                aria-hidden="true"
+              ></i>
+            </summary>
+            <p>
+              Share your hotel or preferred pickup location in Siliguri.
+              Confirm the available pickup arrangements with us on WhatsApp.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="footer container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="wordmark" href="index.html"
+            ><img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" loading="lazy" /></a
+          >
+          <p>
+            Bike rentals for exploring Darjeeling and the surrounding hills.
+          </p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <h2>Explore</h2>
+          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          ><a href="about.html">About</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer-contact">
+          <h2>Find us in the hills</h2>
+          <a href="#booking"
+            ><i data-lucide="message-circle" aria-hidden="true"></i>WhatsApp
+            <span aria-hidden="true">↗</span></a
+          ><a href="contact.html"
+            ><i data-lucide="phone" aria-hidden="true"></i>Phone enquiries</a
+          >
+          <p>
+            <i data-lucide="map-pin" aria-hidden="true"></i>Siliguri, West
+            Bengal, India
+          </p>
+          <a
+            href="https://maps.app.goo.gl/iXBdDZEj4XmCJdsT9"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Maps <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© ABHI BIKE RENTAL. All rights reserved.</p>
+        <span>Made for mountain journeys.</span>
+      </div>
+    </footer>
+    <a class="mobile-book button button-green" href="#booking"
+      ><i data-lucide="message-circle" aria-hidden="true"></i>Book Your Bike
+      <span aria-hidden="true">↗</span></a
+    >
+    <dialog
+      id="contact-dialog"
+      class="contact-dialog glass"
+      aria-labelledby="dialog-title"
+    >
+      <button class="dialog-close" type="button" aria-label="Close message">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+      <h2 id="dialog-title">WhatsApp booking is unavailable</h2>
+      <p>
+        Please call <a href="tel:+917364897023">+91 73648 97023</a> for your
+        enquiry. Your details remain on this page.
+      </p>
+      <button class="button button-light dialog-dismiss" type="button">
+        Back to your ride
+      </button>
+    </dialog>
+  </body>
+</html>

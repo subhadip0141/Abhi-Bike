@@ -1,0 +1,410 @@
+/* Shared About and Contact layouts use the existing site tokens. */
+.about-page .navbar,
+.contact-page .navbar {
+  background: rgba(10, 10, 10, 0.16);
+}
+.page-hero .fleet-hero-shade {
+  background:
+    linear-gradient(
+      180deg,
+      #00000055 0%,
+      transparent 32%,
+      #00000050 55%,
+      #0a0a0a 100%
+    ),
+    linear-gradient(90deg, #00000035, transparent 75%);
+}
+.page-hero {
+  min-height: 530px;
+}
+.page-hero .fleet-hero-copy {
+  padding-top: 220px;
+  padding-bottom: 55px;
+}
+.page-hero .fleet-hero-copy > p:not(.eyebrow) {
+  max-width: 480px;
+}
+.page-hero .hero-image {
+  object-position: center 20%;
+}
+.about-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px;
+  align-items: center;
+}
+.story-photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1.05;
+}
+.story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 28% center;
+}
+.story-copy > .eyebrow {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.story-copy h2 {
+  font-size: clamp(30px, 3.1vw, 44px);
+}
+.story-copy > p:not(.eyebrow) {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-top: 22px;
+  max-width: 450px;
+}
+.story-copy .button {
+  margin-top: 28px;
+}
+.about-values {
+  padding-top: 0;
+}
+.about-outlook {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 30px;
+  padding: 48px;
+  border-radius: var(--radius);
+  background: #ffffff04;
+}
+.about-outlook > .lucide {
+  width: 50px;
+  height: 50px;
+  color: #b6b6b6;
+}
+.about-outlook h2 {
+  font-size: 34px;
+}
+.about-outlook p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+  max-width: 640px;
+  margin-top: 20px;
+}
+.about-outlook .chips {
+  margin-bottom: 0;
+}
+.about-cta {
+  padding-block: 90px 0;
+}
+.about-page .footer {
+  padding-top: 75px;
+}
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 440px;
+  gap: 110px;
+  align-items: start;
+  padding-top: 65px;
+}
+.contact-copy > p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 420px;
+  margin-top: 22px;
+}
+.contact-methods {
+  display: grid;
+  gap: 16px;
+  margin-top: 33px;
+}
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  border-radius: var(--radius);
+  padding: 25px;
+  background: #ffffff04;
+}
+.contact-method > .lucide {
+  width: 25px;
+  height: 25px;
+  color: #eee;
+  margin-top: 2px;
+}
+.contact-method h3,
+.pickup-note h3 {
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+}
+.contact-method p,
+.pickup-note p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.contact-method a {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 30px;
+}
+.contact-method a:hover {
+  color: var(--green);
+}
+.pickup-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-top: 30px;
+  padding-inline: 25px;
+}
+.pickup-note > .lucide {
+  width: 23px;
+  height: 23px;
+  margin-top: 2px;
+}
+.pickup-note h3 {
+  font-size: 16px;
+}
+.contact-layout .booking-card {
+  background: linear-gradient(145deg, #ffffff09, #ffffff02), #111;
+  animation: none;
+}
+.contact-layout .booking-heading p {
+  max-width: 300px;
+}
+.contact-location {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #111;
+}
+.location-photo {
+  min-height: 420px;
+}
+.location-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.location-copy {
+  padding: 48px;
+  border: 0;
+  box-shadow: none;
+  background: #ffffff03;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.location-copy > .lucide {
+  width: 27px;
+  height: 27px;
+  margin-bottom: 25px;
+}
+.location-copy h2 {
+  font-size: 34px;
+}
+.location-copy address {
+  font-style: normal;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-top: 22px;
+}
+.location-copy p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 340px;
+  margin-top: 19px;
+}
+.location-copy .button {
+  margin-top: 25px;
+  font-size: 12px;
+}
+.contact-faq {
+  padding-top: 90px;
+}
+.contact-page .footer {
+  border-top: 1px solid #ffffff12;
+  padding-top: 65px;
+}
+@media (max-width: 1279px) {
+  .about-story {
+    gap: 55px;
+  }
+  .contact-layout {
+    gap: 65px;
+    grid-template-columns: 1fr 390px;
+  }
+  .location-copy {
+    padding: 36px;
+  }
+  .location-copy h2 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 1023px) {
+  .about-story {
+    gap: 30px;
+  }
+  .story-photo {
+    aspect-ratio: 0.85;
+  }
+  .story-copy h2 {
+    font-size: 32px;
+  }
+  .contact-layout {
+    gap: 30px;
+    grid-template-columns: 1fr 350px;
+  }
+  .contact-copy h2 {
+    font-size: 34px;
+  }
+  .contact-method {
+    padding: 22px;
+    gap: 15px;
+  }
+  .contact-method h3 {
+    font-size: 16px;
+  }
+  .pickup-note {
+    padding-inline: 15px;
+    gap: 16px;
+  }
+  .contact-location {
+    grid-template-columns: 1fr 1fr;
+  }
+  .location-copy {
+    padding: 30px;
+  }
+  .location-copy h2 {
+    font-size: 29px;
+  }
+}
+@media (max-width: 767px) {
+  .page-hero {
+    min-height: 530px;
+  }
+  .page-hero .fleet-hero-copy {
+    padding-top: 250px;
+    padding-bottom: 38px;
+  }
+  .page-hero .hero-image {
+    object-position: 53% center;
+  }
+  .page-hero h1 {
+    font-size: clamp(38px, 9.5vw, 55px);
+  }
+  .page-hero .fleet-hero-copy > p:not(.eyebrow) {
+    font-size: 12px;
+    max-width: 350px;
+  }
+  .about-story {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 45px;
+  }
+  .story-photo {
+    aspect-ratio: 1.12;
+  }
+  .story-copy > .eyebrow {
+    font-size: 9px;
+    margin-bottom: 17px;
+  }
+  .story-copy h2 {
+    font-size: 32px;
+  }
+  .story-copy > p:not(.eyebrow) {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+  .story-copy .button {
+    margin-top: 24px;
+  }
+  .about-values {
+    padding-top: 0;
+  }
+  .about-outlook {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+    gap: 20px;
+  }
+  .about-outlook > .lucide {
+    width: 35px;
+    height: 35px;
+  }
+  .about-outlook h2 {
+    font-size: 30px;
+  }
+  .about-outlook p {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+  .about-cta {
+    padding-top: 60px;
+  }
+  .about-page .footer {
+    padding-top: 55px;
+  }
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding-top: 45px;
+  }
+  .contact-copy h2 {
+    font-size: 32px;
+  }
+  .contact-copy > p {
+    font-size: 12px;
+    margin-top: 19px;
+  }
+  .contact-methods {
+    margin-top: 27px;
+    gap: 14px;
+  }
+  .contact-method {
+    padding: 23px 20px;
+    gap: 18px;
+  }
+  .contact-method h3 {
+    font-size: 17px;
+  }
+  .contact-method p {
+    font-size: 11px;
+  }
+  .pickup-note {
+    padding-inline: 10px;
+    margin-top: 27px;
+  }
+  .contact-location {
+    grid-template-columns: 1fr;
+  }
+  .location-photo {
+    min-height: 0;
+    aspect-ratio: 1.3;
+  }
+  .location-copy {
+    padding: 30px 25px;
+  }
+  .location-copy > .lucide {
+    margin-bottom: 20px;
+  }
+  .location-copy h2 {
+    font-size: 31px;
+  }
+  .location-copy address {
+    font-size: 16px;
+    margin-top: 17px;
+  }
+  .contact-faq {
+    padding-top: 60px;
+  }
+  .contact-page .footer {
+    padding-top: 45px;
+  }
+}

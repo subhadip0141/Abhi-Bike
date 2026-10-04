@@ -1,0 +1,13 @@
+{
+  "name": "abhi-bike-rental",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static ABHI Bike Rental website",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node js/serve.cjs",
+    "check": "node scripts/check.cjs",
+    "test": "node scripts/check.cjs && node --test tests/*.test.cjs",
+    "check:browser": "node scripts/check-browser.cjs"
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+*.pem
+*.key
+*.log
+coverage/
+previews/
+quality/
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
