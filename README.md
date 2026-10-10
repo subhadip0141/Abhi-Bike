@@ -10,7 +10,7 @@ Use Node.js 22 or newer:
 npm start
 ```
 
-Open http://127.0.0.1:4173. On Windows PowerShell, use `npm.cmd start` if PowerShell blocks `npm.ps1`. No dependency installation is needed. You can also open `frontend/index.html` directly.
+Open http://127.0.0.1:4173. On Windows PowerShell, use `npm.cmd start` if PowerShell blocks `npm.ps1`. No dependency installation is needed. You can also open `frontend/frontpage.html` directly.
 
 ## Checks
 
@@ -28,7 +28,7 @@ In a restricted execution environment where Chrome cannot start its renderer, th
 ## Project files
 
 - `index.html`: root entry point linking and redirecting to the homepage.
-- `frontend/`: Home, Bikes, About, Contact and Booking pages.
+- `frontend/`: Home (`frontpage.html`), Bikes, About, Contact and Booking pages.
 - `css/`: shared styles, responsive rules and page styles; `brand.css` is loaded last to apply the current brand design.
 - `js/`: navigation, fleet filters, booking logic and the local preview server.
 - `assets/`: images, locally hosted fonts and icons.
@@ -37,9 +37,11 @@ In a restricted execution environment where Chrome cannot start its renderer, th
 
 ## Business configuration
 
-The business number is configured in `js/booking.js` as `917364897023` (country code and digits only). The Contact page uses the same number for its telephone link. Update both if the number changes. Google Maps links point to the location supplied by the owner: https://maps.app.goo.gl/iXBdDZEj4XmCJdsT9.
+The business number is configured in `js/booking.js` as `917001193713` (country code and digits only). The Contact page uses the same number for its telephone link. Update both if the number changes. Google Maps links point to the location supplied by the owner: https://maps.app.goo.gl/iXBdDZEj4XmCJdsT9.
 
-The booking form validates names, phone numbers, dates and pickup locations, then opens a WhatsApp enquiry. Business dates use Asia/Kolkata time. Availability, pricing and pickup are confirmed through WhatsApp; submitting the form does not confirm a booking or take payment. Customer form details are not stored by this website.
+The booking form validates names, phone numbers, dates, times and the pickup selection, then displays the rental terms. Customers must check the agreement checkbox before opening their WhatsApp enquiry; the message includes their agreement. Closing the terms keeps the form details and resets consent. Business dates use Asia/Kolkata time, and same-day returns must be after pickup. Availability, pricing and pickup are confirmed through WhatsApp; submitting the form does not confirm a booking or take payment. Customer form details are not stored by this website.
+
+Pickup is at Ashapurna Sarani Road, near Siliguri Junction, Pradhan Nagar, Siliguri, Darjeeling, West Bengal – 734003. The pickup dropdown currently offers this one location.
 
 ## Static hosting
 

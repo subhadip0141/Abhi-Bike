@@ -13,16 +13,18 @@ function bookingPage(requestedBike = "") {
   const opened = [];
   function element(id) {
     if (!elements.has(id)) elements.set(id, {
-      value: "", hidden: true, validation: "", listeners: {},
+      value: "", hidden: true, checked: false, validation: "", listeners: {},
       addEventListener(event, callback) { this.listeners[event] = callback; },
       setCustomValidity(message) { this.validation = message; },
-      showModal() { this.open = true; }, close() { this.open = false; },
+      showModal() { this.open = true; }, close() { this.open = false; this.listeners.close?.(); },
+      querySelector() { return element("terms-content"); },
     });
     return elements.get(id);
   }
   element("bike-select").options = [{ value: "" }, ...bikeNames.map(value => ({ value }))];
-  element("booking-form").reportValidity = () => ["customer-name", "customer-phone", "pickup-date", "return-date", "pickup-location", "bike-select"].every(id => element(id).value && !element(id).validation);
-  const names = { name: "customer-name", phone: "customer-phone", pickupDate: "pickup-date", returnDate: "return-date", location: "pickup-location", bike: "bike-select" };
+  element("booking-form").reportValidity = () => ["customer-name", "customer-phone", "pickup-date", "return-date", "pickup-time", "return-time", "pickup-location", "bike-select"].every(id => element(id).value && !element(id).validation);
+  element("terms-form").reportValidity = () => element("terms-agree").checked;
+  const names = { name: "customer-name", phone: "customer-phone", pickupDate: "pickup-date", returnDate: "return-date", pickupTime: "pickup-time", returnTime: "return-time", location: "pickup-location", bike: "bike-select" };
   const context = {
     document: { getElementById: element, querySelectorAll: () => [] },
     window: { location: { search: "?bike=" + encodeURIComponent(requestedBike) }, open: (...args) => opened.push(args) },
@@ -33,13 +35,20 @@ function bookingPage(requestedBike = "") {
   const fillValid = () => {
     element("customer-name").value = "Test & Rider";
     element("customer-phone").value = "+91 98765 43210";
-    element("pickup-location").value = "Siliguri & Hotel";
+    element("pickup-location").value = "Ashapurna Sarani Road, near Siliguri Junction";
     element("bike-select").value = bikeNames[0];
     element("pickup-date").value = element("pickup-date").min;
     element("return-date").value = element("pickup-date").min;
+    element("pickup-time").value = "09:00";
+    element("return-time").value = "17:00";
   };
   const submit = () => element("booking-form").listeners.submit({ preventDefault() {} });
-  return { element, opened, fillValid, submit };
+  const acceptTerms = () => {
+    element("terms-agree").checked = true;
+    element("terms-agree").listeners.change();
+    element("terms-form").listeners.submit({ preventDefault() {} });
+  };
+  return { element, opened, fillValid, submit, acceptTerms };
 }
 
 test("all catalogue bikes prefill, unknown bikes are ignored", () => {
@@ -50,13 +59,19 @@ test("all catalogue bikes prefill, unknown bikes are ignored", () => {
 
 test("valid enquiry opens a correctly encoded WhatsApp URL with the configured business number", () => {
   const page = bookingPage(); page.fillValid(); page.submit();
+  assert.equal(page.opened.length, 0);
+  assert.equal(page.element("terms-dialog").open, true);
+  page.acceptTerms();
   assert.equal(page.opened.length, 1);
   const [href, target, features] = page.opened[0];
   const url = new URL(href);
   assert.equal(url.origin, "https://wa.me");
-  assert.equal(url.pathname, "/917364897023");
+  assert.equal(url.pathname, "/917001193713");
   assert.match(url.searchParams.get("text"), /Name: Test & Rider/);
-  assert.match(url.searchParams.get("text"), /Pickup Location: Siliguri & Hotel/);
+  assert.match(url.searchParams.get("text"), /Pickup Location: Ashapurna Sarani Road, near Siliguri Junction/);
+  assert.match(url.searchParams.get("text"), /Pickup Time: 09:00/);
+  assert.match(url.searchParams.get("text"), /Return Time: 17:00/);
+  assert.match(url.searchParams.get("text"), /I agree to the TERMS & CONDITIONS/);
   assert.equal(target, "_blank"); assert.equal(features, "noopener,noreferrer");
   assert.equal(page.element("booking-status").hidden, false);
 });
@@ -66,4 +81,50 @@ test("invalid phone, dates and whitespace-only fields block enquiries", () => {
     const page = bookingPage(); page.fillValid(); page.element(field).value = value; page.submit();
     assert.equal(page.opened.length, 0, field);
   }
+});
+
+test("same-day returns must be after pickup and changing dates clears time errors", () => {
+  for (const time of ["08:00", "09:00"]) {
+    const page = bookingPage(); page.fillValid();
+    page.element("return-time").value = time; page.submit();
+    assert.equal(page.opened.length, 0);
+    assert.match(page.element("return-time").validation, /after pickup time/);
+    page.element("return-date").value = "2099-12-31";
+    page.element("return-date").listeners.change();
+    assert.equal(page.element("return-time").validation, "");
+    page.submit(); page.acceptTerms(); assert.equal(page.opened.length, 1);
+  }
+});
+
+test("both times are required and editing a time clears an invalid order", () => {
+  for (const field of ["pickup-time", "return-time"]) {
+    const page = bookingPage(); page.fillValid();
+    page.element(field).value = ""; page.submit();
+    assert.equal(page.opened.length, 0);
+  }
+  const page = bookingPage(); page.fillValid();
+  page.element("return-time").value = "08:00"; page.submit();
+  page.element("pickup-time").value = "07:00";
+  page.element("pickup-time").listeners.input();
+  assert.equal(page.element("return-time").validation, "");
+  page.submit(); page.acceptTerms(); assert.equal(page.opened.length, 1);
+});
+
+test("terms require agreement, cancellation preserves the booking and reopening resets consent", () => {
+  const page = bookingPage(); page.fillValid(); page.submit();
+  assert.equal(page.element("terms-submit").disabled, true);
+  page.element("terms-form").listeners.submit({ preventDefault() {} });
+  assert.equal(page.opened.length, 0);
+  page.element("terms-agree").checked = true;
+  page.element("terms-agree").listeners.change();
+  assert.equal(page.element("terms-submit").disabled, false);
+  page.element("terms-close").listeners.click();
+  assert.equal(page.element("customer-name").value, "Test & Rider");
+  page.acceptTerms();
+  assert.equal(page.opened.length, 0);
+  page.submit();
+  assert.equal(page.element("terms-agree").checked, false);
+  assert.equal(page.element("terms-submit").disabled, true);
+  page.acceptTerms();
+  assert.equal(page.opened.length, 1);
 });

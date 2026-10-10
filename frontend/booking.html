@@ -25,11 +25,11 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="navbar glass container" aria-label="Main navigation">
-        <a class="wordmark" href="index.html">
+        <a class="wordmark" href="frontpage.html">
           <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
         </a>
         <div class="desktop-nav">
-          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          <a href="frontpage.html">Home</a><a href="bikes.html">Bikes</a
           ><a href="about.html">About</a><a href="contact.html">Contact</a>
         </div>
         <a class="button button-nav" href="#booking" aria-current="page"
@@ -46,7 +46,7 @@
           <i data-lucide="menu" aria-hidden="true"></i>
         </button>
         <div id="mobile-menu" class="mobile-menu glass" hidden>
-          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          <a href="frontpage.html">Home</a><a href="bikes.html">Bikes</a
           ><a href="about.html">About</a><a href="contact.html">Contact</a
           ><a href="#booking">Book on WhatsApp ↗</a>
         </div>
@@ -86,7 +86,7 @@
                 <span>02</span>
                 <div>
                   <h3>Share Your Plans</h3>
-                  <p>Your dates and preferred pickup location.</p>
+                  <p>Your dates, times and pickup location.</p>
                 </div>
               </li>
               <li>
@@ -173,7 +173,7 @@
                     type="tel"
                     autocomplete="tel"
                     inputmode="tel"
-                    placeholder="+91 98765 43210"
+                    placeholder="xxxxxxxxx"
                     maxlength="25"
                     required
                   />
@@ -199,17 +199,28 @@
                   />
                 </div>
               </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="pickup-time">Pickup Time</label>
+                  <input id="pickup-time" name="pickupTime" type="time" required />
+                </div>
+                <div class="field">
+                  <label for="return-time">Return Time</label>
+                  <input id="return-time" name="returnTime" type="time" required />
+                </div>
+              </div>
               <div class="field">
                 <label for="pickup-location">Pickup Location</label
-                ><input
+                ><select
                   id="pickup-location"
                   name="location"
-                  type="text"
-                  autocomplete="street-address"
-                  placeholder="Hotel or location in Siliguri"
-                  maxlength="200"
                   required
-                />
+                >
+                  <option value="" disabled selected>Select pickup location</option>
+                  <option value="Ashapurna Sarani Road, near Siliguri Junction">
+                    Ashapurna Sarani Road, near Siliguri Junction
+                  </option>
+                </select>
               </div>
               <div class="field">
                 <label for="bike-select">Select Bike</label
@@ -220,7 +231,7 @@
                   <option>Royal Enfield Scram 411</option>
                   <option>Royal Enfield Hunter 350</option>
                   <option>Bajaj Pulsar NS160</option>
-                  <option>TVS Ntorq Black Panther Edition</option>
+                  <option>TVS Ntorq B.P. Edition</option>
                   <option>TVS Ntorq Race Edition</option>
                   <option>Suzuki Burgman 125</option>
                   <option>Bajaj Avenger</option>
@@ -309,8 +320,8 @@
               ></i>
             </summary>
             <p>
-              Share your hotel or preferred pickup location in Siliguri.
-              Confirm the available pickup arrangements with us on WhatsApp.
+              Pickup is at Ashapurna Sarani Road, near Siliguri Junction.
+              Confirm your pickup time with us on WhatsApp.
             </p>
           </details>
         </div>
@@ -319,7 +330,7 @@
     <footer class="footer container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="wordmark" href="index.html"
+          <a class="wordmark" href="frontpage.html"
             ><img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" loading="lazy" /></a
           >
           <p>
@@ -328,7 +339,7 @@
         </div>
         <nav aria-label="Footer navigation">
           <h2>Explore</h2>
-          <a href="index.html">Home</a><a href="bikes.html">Bikes</a
+          <a href="frontpage.html">Home</a><a href="bikes.html">Bikes</a
           ><a href="about.html">About</a><a href="contact.html">Contact</a>
         </nav>
         <div class="footer-contact">
@@ -360,6 +371,36 @@
       ><i data-lucide="message-circle" aria-hidden="true"></i>Book Your Bike
       <span aria-hidden="true">↗</span></a
     >
+    <dialog id="terms-dialog" class="terms-dialog" aria-labelledby="terms-title">
+      <div class="terms-header">
+        <h2 id="terms-title">Terms &amp; Conditions</h2>
+        <button id="terms-close" class="terms-close" type="button" aria-label="Close terms and return to booking">×</button>
+      </div>
+      <div class="terms-content" tabindex="0" aria-label="Rental terms">
+        <ol>
+          <li><strong>Minimum Age Limit:</strong> The tenant (Customer) must be 18 years of age or older. Vehicles will not be rented to individuals under 18 years of age under any circumstances.</li>
+          <li><strong>Valid Driving License:</strong> The customer must possess a valid original Driving License (DL), which must be presented for verification prior to vehicle handover.</li>
+          <li><strong>Original ID Submission:</strong> As a security measure, the customer must submit one original government-issued ID proof (e.g., Voter ID, Passport), which will be returned immediately upon returning the vehicle safely.</li>
+          <li><strong>Security Deposit &amp; Refund:</strong> The customer must pay a refundable Security Deposit at pickup. This amount will be fully refunded when the vehicle is returned in the same original condition, after deducting any pending fines, fuel charges, or damage repair costs (if applicable).</li>
+          <li><strong>No Third-Party Use:</strong> The vehicle can only be operated by the person named in this agreement. Handing over or allowing any third party to ride the vehicle is strictly prohibited.</li>
+          <li><strong>Traffic Rules &amp; Violations (Challans):</strong> The customer must strictly obey all traffic rules. If any traffic violation or challan is issued during the rental period, the customer shall bear complete legal and financial responsibility.</li>
+          <li><strong>Safe Riding &amp; Rough Driving Prohibition:</strong> The customer must ride smoothly and responsibly. Rough driving, over-speeding, stunt riding, or negligent operation is strictly prohibited.</li>
+          <li><strong>Accidents, Damage &amp; Financial Responsibility:</strong> In the event of any accident, damage, or collision during the rental period, the customer shall be fully responsible for paying all repair costs and losses in full.</li>
+          <li><strong>Vehicle Condition &amp; Return:</strong> The customer must return the vehicle in the same original condition as provided. The vehicle must be returned at the agreed time/date specified in this agreement.</li>
+          <li><strong>Late Return Charges:</strong> If the customer fails to return the vehicle at the agreed time, additional Late Charges will apply for every extra hour/day until returned.</li>
+          <li><strong>Vehicle Theft &amp; Loss Compensation:</strong> In case of vehicle theft, total loss, or seizure by authorities due to customer negligence, the customer will be solely responsible and must pay the full market value/compensation to the owner.</li>
+          <li><strong>Illegal Activities &amp; Legal Responsibility:</strong> Using the vehicle for any illegal activity or contraband transport is strictly prohibited. Full legal responsibility will be borne by the customer. The owner/company shall not be held liable.</li>
+          <li><strong>Fuel Policy:</strong> The customer must return the vehicle with the same fuel (petrol) level as provided at the time of pickup.</li>
+        </ol>
+      </div>
+      <form id="terms-form" class="terms-actions">
+        <label class="terms-agreement" for="terms-agree">
+          <input id="terms-agree" type="checkbox" required />
+          <span>I agree the TERMS &amp; CONDITIONS</span>
+        </label>
+        <button id="terms-submit" class="button button-green" type="submit" disabled>Submit &amp; Open WhatsApp <span aria-hidden="true">↗</span></button>
+      </form>
+    </dialog>
     <dialog
       id="contact-dialog"
       class="contact-dialog glass"
@@ -370,7 +411,7 @@
       </button>
       <h2 id="dialog-title">WhatsApp booking is unavailable</h2>
       <p>
-        Please call <a href="tel:+917364897023">+91 73648 97023</a> for your
+        Please call <a href="tel:+917001193713">+91 70011 93713</a> for your
         enquiry. Your details remain on this page.
       </p>
       <button class="button button-light dialog-dismiss" type="button">

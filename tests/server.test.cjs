@@ -10,7 +10,7 @@ test("preview server serves the website and blocks private repository files", as
   const base = `http://127.0.0.1:${server.address().port}`;
   const home = await fetch(base + "/");
   assert.equal(home.status, 200);
-  assert.match(await home.text(), /frontend\/index.html/);
+  assert.match(await home.text(), /frontend\/frontpage.html/);
   const image = await fetch(base + "/assets/images/gallery/trains.webp", { method: "HEAD" });
   assert.equal(image.status, 200);
   assert.equal(image.headers.get("content-type"), "image/webp");

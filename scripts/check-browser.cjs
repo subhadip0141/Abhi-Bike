@@ -79,7 +79,7 @@ async function navigate(file) {
   fs.mkdirSync(path.join(root, "previews"), { recursive: true });
   for (const width of [375, 390, 430, 768, 1024, 1440, 1920]) {
     await send("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: width < 768 });
-    for (const file of ["index.html", "bikes.html", "about.html", "contact.html", "booking.html"]) {
+    for (const file of ["frontpage.html", "bikes.html", "about.html", "contact.html", "booking.html"]) {
       await navigate(file);
       const result = await evaluate(`(() => ({
         overflow: document.documentElement.scrollWidth > innerWidth,
@@ -94,11 +94,50 @@ async function navigate(file) {
         const screenshot = await send("Page.captureScreenshot", { format: "png", captureBeyondViewport: true, clip: { x: 0, y: 0, width: metrics.cssContentSize.width, height: metrics.cssContentSize.height, scale: 1 } });
         fs.writeFileSync(path.join(root, "previews", `${file.replace('.html', '')}-${width}.png`), Buffer.from(screenshot.data, "base64"));
       }
+      if (file === "booking.html") {
+        const terms = await evaluate(`(() => {
+          window.open = () => { throw new Error('WhatsApp opened without agreement'); };
+          const fill = (id, value) => { document.getElementById(id).value = value; };
+          fill('customer-name', 'Test Rider'); fill('customer-phone', '9876543210');
+          fill('pickup-location', 'Ashapurna Sarani Road, near Siliguri Junction');
+          fill('bike-select', 'Royal Enfield Himalayan 450');
+          fill('pickup-date', document.querySelector('#pickup-date').min);
+          fill('return-date', document.querySelector('#pickup-date').min);
+          fill('pickup-time', '09:00'); fill('return-time', '17:00');
+          document.querySelector('#booking-form').requestSubmit();
+          const dialog = document.querySelector('#terms-dialog');
+          const content = dialog.querySelector('.terms-content');
+          const bounds = dialog.getBoundingClientRect();
+          const actions = dialog.querySelector('.terms-actions').getBoundingClientRect();
+          const heading = document.querySelector('.booking-heading').getBoundingClientRect();
+          const icon = document.querySelector('.booking-heading .booking-icon').getBoundingClientRect();
+          document.querySelector('#terms-form').dispatchEvent(new Event('submit', {cancelable: true}));
+          return {
+            open: dialog.open, count: content.querySelectorAll('li').length,
+            disabled: document.querySelector('#terms-submit').disabled,
+            fits: bounds.left >= 0 && bounds.right <= innerWidth && bounds.top >= 0 && bounds.bottom <= innerHeight,
+            scrolls: content.scrollHeight > content.clientHeight,
+            actionsVisible: actions.bottom <= bounds.bottom && actions.top >= bounds.top,
+            iconAligned: Math.abs(icon.right - heading.right) < 1 && icon.width === icon.height
+          };
+        })()`);
+        assert.ok(terms.open && terms.count === 13 && terms.disabled && terms.fits && terms.scrolls && terms.actionsVisible && terms.iconAligned, JSON.stringify({width, terms}));
+        if (width === 390 || width === 1440) {
+          const screenshot = await send("Page.captureScreenshot", { format: "png" });
+          fs.writeFileSync(path.join(root, "previews", `booking-terms-${width}.png`), Buffer.from(screenshot.data, "base64"));
+        }
+        await evaluate(`new Promise(resolve => {
+          const dialog = document.querySelector('#terms-dialog');
+          dialog.addEventListener('close', resolve, {once: true});
+          document.querySelector('#terms-close').click();
+        })`);
+        assert.equal(await evaluate("document.querySelector('#customer-name').value"), "Test Rider");
+      }
     }
     console.log(`All five pages passed at ${width}px`);
   }
   await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-  await navigate("index.html");
+  await navigate("frontpage.html");
   assert.deepEqual(await evaluate(`(() => {
     document.querySelector('.menu-toggle').click();
     const opened = !document.querySelector('#mobile-menu').hidden;
@@ -126,11 +165,18 @@ async function navigate(file) {
     window.open = url => { window.testWhatsAppUrl = url; return {}; };
     const fill = (id, value) => { document.getElementById(id).value = value; };
     fill('customer-name', 'Test & Rider'); fill('customer-phone', '+91 98765 43210');
-    fill('pickup-location', 'Siliguri & Hotel'); fill('bike-select', 'Royal Enfield Himalayan 450');
+    fill('pickup-location', 'Ashapurna Sarani Road, near Siliguri Junction'); fill('bike-select', 'Royal Enfield Himalayan 450');
     fill('pickup-date', document.querySelector('#pickup-date').min);
     fill('return-date', document.querySelector('#pickup-date').min);
+    fill('pickup-time', '09:00'); fill('return-time', '17:00');
     const form = document.querySelector('#booking-form');
     form.dispatchEvent(new Event('submit', {cancelable: true}));
+    if (window.testWhatsAppUrl) throw new Error('WhatsApp opened before accepting terms');
+    if (!document.querySelector('#terms-dialog').open) throw new Error('Terms dialog did not open');
+    const agreement = document.querySelector('#terms-agree');
+    agreement.checked = true;
+    agreement.dispatchEvent(new Event('change'));
+    document.querySelector('#terms-form').requestSubmit();
     const url = window.testWhatsAppUrl;
     window.testWhatsAppUrl = null; fill('customer-phone', '123');
     form.dispatchEvent(new Event('submit', {cancelable: true}));
@@ -141,14 +187,15 @@ async function navigate(file) {
   })()`);
   const url = new URL(booking.url);
   assert.equal(url.hostname, "wa.me");
-  assert.equal(url.pathname, "/917364897023");
+  assert.equal(url.pathname, "/917001193713");
   assert.match(url.searchParams.get("text"), /Test & Rider/);
-  assert.match(url.searchParams.get("text"), /Siliguri & Hotel/);
+  assert.match(url.searchParams.get("text"), /Ashapurna Sarani Road, near Siliguri Junction/);
+  assert.match(url.searchParams.get("text"), /I agree to the TERMS & CONDITIONS/);
   assert.ok(booking.invalidPhoneBlocked && booking.invalidDateBlocked);
   assert.deepEqual(errors, []);
   fs.mkdirSync(path.join(root, "quality"), { recursive: true });
   fs.writeFileSync(path.join(root, "quality", "browser-checks.json"), JSON.stringify({ pages: report, booking: "passed", filters: "passed", menu: "passed" }, null, 2));
-  console.log("Passed: 35 layouts, nine booking prefills, filters, mobile menu, WhatsApp URL encoding and validation.");
+  console.log("Passed: 35 layouts, seven terms popup layouts, nine booking prefills, filters, mobile menu, WhatsApp URL encoding and validation.");
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(async () => {
   if (socket) socket.close();
   for (const task of pending.values()) clearTimeout(task.timer);

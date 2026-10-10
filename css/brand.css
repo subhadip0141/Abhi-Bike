@@ -1,8 +1,10 @@
-/* ABHI identity: navy typography, sky-blue information, forest-green booking,
+/* ABHI identity: navy typography, sky-blue information, blue buttons,
    sunrise yellow highlights. One light theme. Surfaces 20px, controls 10px. */
 :root {
   --brand-navy: #012851;
   --brand-blue: #018dec;
+  --button-blue: #064576;
+  --button-blue-hover: #03365e;
   --brand-green: #0c8128;
   --brand-orange: #feb103;
   --bg: #f2f7fb;
@@ -30,13 +32,13 @@ h2 { font-size: clamp(30px, 3.2vw, 46px); }
 .desktop-nav a:hover, .desktop-nav a.active { color: var(--brand-navy); }
 .desktop-nav a.active:after { background: var(--brand-blue); height: 3px; bottom: 0; }
 .button { min-height: 50px; border-radius: 10px; padding: 13px 22px; font-size: 14px; font-weight: 750; }
-.button-nav, .button-light { background: var(--brand-navy); color: #fff; border-color: var(--brand-navy); }
+.button-nav, .button-light { background: var(--button-blue); color: #fff; border-color: var(--button-blue); }
 .button-nav { font-size: 13px; min-height: 44px; }
-.button-nav:hover, .button-light:hover { background: #064576; color: #fff; }
-.button-green { background: var(--brand-green); color: #fff; }
-.button-green:hover { background: #096520; color: #fff; }
-.button-outline, .button-glass { background: transparent; color: var(--brand-navy); border: 1px solid #aabfd0; backdrop-filter: none; }
-.button-outline:hover, .button-glass:hover { background: #e2edf5; color: var(--brand-navy); border-color: var(--brand-navy); }
+.button-nav:hover, .button-light:hover { background: var(--button-blue-hover); color: #fff; border-color: var(--button-blue-hover); }
+.button-green { background: var(--button-blue); color: #fff; border-color: var(--button-blue); }
+.button-green:hover { background: var(--button-blue-hover); color: #fff; border-color: var(--button-blue-hover); }
+.button-outline, .button-glass { background: transparent; color: var(--button-blue); border: 1px solid var(--button-blue); backdrop-filter: none; }
+.button-outline:hover, .button-glass:hover { background: #e2edf5; color: var(--button-blue-hover); border-color: var(--button-blue-hover); }
 .menu-toggle { color: var(--text); border-color: var(--border); border-radius: 10px; }
 .mobile-menu { background: #fff; border: 1px solid var(--border); box-shadow: 0 12px 30px #01285116; }
 .mobile-menu a { color: var(--text); font-weight: 650; }
@@ -85,8 +87,8 @@ h1 span { color: #0569a9; font-weight: 800; }
 .bike-bottom, .fleet-grid .bike-bottom { margin-top: 18px; padding-top: 18px; border-color: var(--border); gap: 15px; }
 .bike-bottom h4 { font-size: 20px; margin: 0; letter-spacing: -.035em; }
 .bike-bottom > span { color: var(--muted); font-size: 12px; }
-.bike-bottom a, .bike-bottom button, .fleet-grid .bike-bottom a, .fleet-grid .bike-bottom button { min-height: 48px; background: var(--brand-green); color: #fff; padding: 12px 18px; border-radius: 10px; font-size: 14px; font-weight: 750; }
-.bike-bottom a:hover, .bike-bottom button:hover { background: #096520; color: #fff; }
+.bike-bottom a, .bike-bottom button, .fleet-grid .bike-bottom a, .fleet-grid .bike-bottom button { min-height: 48px; background: var(--button-blue); color: #fff; padding: 12px 18px; border-radius: 10px; font-size: 14px; font-weight: 750; }
+.bike-bottom a:hover, .bike-bottom button:hover, .fleet-grid .bike-bottom a:hover, .fleet-grid .bike-bottom button:hover { background: var(--button-blue-hover); color: #fff; }
 .section-action { text-align: left; margin-top: 28px; }
 .hero-features { margin: 0 0 36px; gap: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
 .hero-features li { color: var(--muted); font-size: 13px; }
@@ -136,7 +138,7 @@ h1 span { color: #0569a9; font-weight: 800; }
 .fleet-controls { background: #fff; border-color: var(--border); padding: 12px; border-radius: 14px; }
 .filter-button { color: var(--muted); border-radius: 10px; font-size: 13px; }
 .filter-button:hover { color: var(--text); background: #e8f2f8; }
-.filter-button.selected { background: var(--brand-navy); color: #fff; }
+.filter-button.selected { background: var(--button-blue); color: #fff; }
 .fleet-search input { background: #f2f7fb; border-color: var(--border); border-radius: 10px; }
 .fleet-meta { font-size: 13px; }
 .fleet-empty { background: #fff; }
@@ -172,6 +174,10 @@ h1 span { color: #0569a9; font-weight: 800; }
 .booking-photo picture { display: block; height: 100%; }
 .booking-page .hero-image { height: 100%; }
 .booking-page .selected-bike { background: #e4f2e8; color: #0a5420; font-weight: 650; }
+.booking-page .booking-heading { justify-content: space-between; }
+.booking-page .booking-heading > div { flex: 1; min-width: 0; }
+.booking-page .booking-heading > .booking-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: clamp(40px, 3.5vw, 48px); height: clamp(40px, 3.5vw, 48px); padding: 0; margin-left: auto; }
+.booking-page .booking-heading .mountain-icon { display: block; width: 55%; height: 55%; object-fit: contain; }
 .booking-heading h2 { font-size: 28px; }
 .booking-heading p { max-width: 340px; }
 .field { gap: 8px; margin-bottom: 17px; }
@@ -185,6 +191,21 @@ select option { background: #fff; color: var(--text); }
 .contact-dialog { background: #fff; color: var(--text); border-color: var(--border); }
 .contact-dialog p { color: var(--muted); }
 .dialog-close { color: var(--text); }
+.terms-dialog { width: min(720px, calc(100% - 32px)); max-height: 88vh; max-height: 88dvh; margin: auto; padding: 0; background: #fff; color: var(--text); border: 1px solid var(--border); border-top: 4px solid var(--brand-orange); border-radius: 20px; overflow: hidden; }
+.terms-dialog[open] { display: flex; flex-direction: column; }
+.terms-dialog::backdrop { background: #01285199; }
+.terms-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.terms-header h2 { font-size: clamp(22px, 3vw, 28px); }
+.terms-close { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 10px; background: #e8f2f8; color: var(--text); font-size: 26px; }
+.terms-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px 24px; font-size: 14px; line-height: 1.7; }
+.terms-content ol { list-style: decimal; padding-left: 22px; }
+.terms-content li + li { margin-top: 16px; }
+.terms-content strong { color: var(--text); }
+.terms-actions { padding: 16px 24px 20px; border-top: 1px solid var(--border); flex-shrink: 0; }
+.terms-agreement { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; cursor: pointer; margin-bottom: 16px; }
+.terms-agreement input { width: 20px; height: 20px; flex-shrink: 0; margin: 2px 0 0; padding: 0; accent-color: var(--button-blue); }
+.terms-actions .button { width: 100%; }
+.terms-actions .button:disabled { opacity: .5; cursor: not-allowed; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #0569a9; outline-offset: 4px; }
 .mobile-book { border-radius: 10px; box-shadow: 0 5px 24px #01285124; }
 @media (min-width: 768px) and (max-width: 1100px) {
