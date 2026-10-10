@@ -7,7 +7,7 @@
 - Updated the business phone and WhatsApp destination to +91 7001193713.
 - Added the full Contact page address and updated pickup notes and FAQs to Ashapurna Sarani Road, near Siliguri Junction.
 - Replaced the booking pickup text input with a required dropdown containing the current pickup location.
-- Retained pickup and return time fields and validation requiring same-day returns after pickup; both times appear in the WhatsApp enquiry.
+- Retained pickup and return time fields and validation requiring same-day returns after pickup; both times appear in the WhatsApp enquiry with AM/PM. Time fields have explicit AM/PM selectors and responsive widths, independent of the mobile native time-picker locale.
 - Made the booking mountain icon scale and align at the header's right edge.
 - Changed the customer WhatsApp input placeholder to xxxxxxxxx.
 - Added the 13 supplied rental terms in a scrollable modal. Customers must check the agreement before opening WhatsApp. The enquiry includes their agreement. Closing the modal preserves booking details and resets consent.
@@ -21,7 +21,7 @@
 
 ## Validation
 
-- npm test: seven tests passed, covering catalogue prefills, encoded WhatsApp details, invalid inputs, required times, same-day time ordering, terms acceptance/cancellation and preview-server access controls.
+- npm test: ten tests passed, covering catalogue prefills, encoded WhatsApp details, invalid inputs, required times, explicit AM/PM selection, noon/midnight formatting, invalid 12-hour inputs, same-day time ordering, terms acceptance/cancellation and preview-server access controls.
 - Six HTML documents and 229 local asset, link and fragment references passed validation.
 - Browser checks passed for five pages at 375, 390, 430, 768, 1024, 1440 and 1920 pixels (35 layouts).
 - Terms popup layout and consent checks passed at all seven widths. Desktop and mobile popup screenshots were visually inspected.

@@ -6,6 +6,8 @@ const pickupDate = document.getElementById("pickup-date");
 const returnDate = document.getElementById("return-date");
 const pickupTime = document.getElementById("pickup-time");
 const returnTime = document.getElementById("return-time");
+const pickupPeriod = document.getElementById("pickup-period");
+const returnPeriod = document.getElementById("return-period");
 const phoneInput = document.getElementById("customer-phone");
 const statusMessage = document.getElementById("booking-status");
 const contactDialog = document.getElementById("contact-dialog");
@@ -15,10 +17,15 @@ const termsAgree = document.getElementById("terms-agree");
 const termsSubmit = document.getElementById("terms-submit");
 let pendingBookingMessage = "";
 
-function formatBookingTime(value) {
+function formatBookingTime(value, period) {
   const [hours, minutes] = value.split(":");
   const hour = Number(hours);
-  return `${hour % 12 || 12}:${minutes} ${hour >= 12 ? "PM" : "AM"}`;
+  return `${hour}:${minutes} ${period}`;
+}
+function bookingTimeMinutes(value, period) {
+  if (!/^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(value) || !["AM", "PM"].includes(period)) return null;
+  const [hours, minutes] = value.split(":").map(Number);
+  return (hours % 12 + (period === "PM" ? 12 : 0)) * 60 + minutes;
 }
 
 function localDate() {
@@ -31,9 +38,14 @@ function localDate() {
   }).format(new Date());
 }
 function syncTimes() {
+  const pickupMinutes = bookingTimeMinutes(pickupTime.value, pickupPeriod.value);
+  const returnMinutes = bookingTimeMinutes(returnTime.value, returnPeriod.value);
+  pickupTime.setCustomValidity(pickupTime.value && pickupMinutes === null ? "Enter a 12-hour time like 9:30 and choose AM or PM." : "");
   returnTime.setCustomValidity(
-    pickupDate.value && pickupDate.value === returnDate.value &&
-      pickupTime.value && returnTime.value && returnTime.value <= pickupTime.value
+    returnTime.value && returnMinutes === null
+      ? "Enter a 12-hour time like 9:30 and choose AM or PM."
+      : pickupDate.value && pickupDate.value === returnDate.value &&
+      pickupMinutes !== null && returnMinutes !== null && returnMinutes <= pickupMinutes
       ? "Return time must be after pickup time for a same-day rental."
       : "",
   );
@@ -75,6 +87,8 @@ if (bookingForm) {
   returnDate.addEventListener("change", syncDates);
   pickupTime.addEventListener("input", syncTimes);
   returnTime.addEventListener("input", syncTimes);
+  pickupPeriod.addEventListener("change", syncTimes);
+  returnPeriod.addEventListener("change", syncTimes);
   phoneInput.addEventListener("input", () => phoneInput.setCustomValidity(""));
 }
 function openWhatsApp(message) {
@@ -103,7 +117,7 @@ bookingForm?.addEventListener("submit", (event) => {
   );
   if (!bookingForm.reportValidity()) return;
   const values = new FormData(bookingForm);
-  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent a bike.\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBike: ${values.get("bike")}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${formatBookingTime(values.get("pickupTime"))}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${formatBookingTime(values.get("returnTime"))}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price.\n\nThank you.`;
+  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent a bike.\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBike: ${values.get("bike")}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${formatBookingTime(values.get("pickupTime"), values.get("pickupPeriod"))}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${formatBookingTime(values.get("returnTime"), values.get("returnPeriod"))}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price.\n\nThank you.`;
   pendingBookingMessage = message;
   termsAgree.checked = false;
   termsSubmit.disabled = true;

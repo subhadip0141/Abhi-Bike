@@ -182,6 +182,10 @@ h1 span { color: #0569a9; font-weight: 800; }
 .booking-heading p { max-width: 340px; }
 .field { gap: 8px; margin-bottom: 17px; }
 .field label { color: var(--text); font-size: 13px; font-weight: 750; }
+.time-controls { display: grid; grid-template-columns: minmax(0, 1fr) 76px; gap: 8px; }
+.booking-page .time-field-row { grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); }
+.time-controls input, .time-controls select { width: 100%; min-width: 0; }
+.time-format-help { color: var(--muted); font-size: 12px; margin: -5px 0 17px; }
 input, select { color: var(--text); background: #f7fafc; border: 1px solid #adc3d4; border-radius: 10px; font-size: 14px; height: 49px; padding: 0 13px; }
 input::placeholder { color: #5c7084; font-size: 14px; }
 input:hover, select:hover { border-color: #0569a9; }
