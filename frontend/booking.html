@@ -199,29 +199,16 @@
                   />
                 </div>
               </div>
-              <div class="field-row time-field-row">
+              <div class="field-row">
                 <div class="field">
                   <label for="pickup-time">Pickup Time</label>
-                  <div class="time-controls">
-                    <input id="pickup-time" name="pickupTime" type="text" placeholder="HH:MM" pattern="(0?[1-9]|1[0-2]):[0-5][0-9]" maxlength="5" aria-describedby="time-format-help" required />
-                    <select id="pickup-period" name="pickupPeriod" aria-label="Pickup AM or PM" required>
-                      <option value="AM">AM</option>
-                      <option value="PM">PM</option>
-                    </select>
-                  </div>
+                  <input id="pickup-time" name="pickupTime" type="time" required />
                 </div>
                 <div class="field">
                   <label for="return-time">Return Time</label>
-                  <div class="time-controls">
-                    <input id="return-time" name="returnTime" type="text" placeholder="HH:MM" pattern="(0?[1-9]|1[0-2]):[0-5][0-9]" maxlength="5" aria-describedby="time-format-help" required />
-                    <select id="return-period" name="returnPeriod" aria-label="Return AM or PM" required>
-                      <option value="AM">AM</option>
-                      <option value="PM">PM</option>
-                    </select>
-                  </div>
+                  <input id="return-time" name="returnTime" type="time" required />
                 </div>
               </div>
-              <p id="time-format-help" class="time-format-help">Enter a 12-hour time, such as 9:30, and choose AM or PM.</p>
               <div class="field">
                 <label for="pickup-location">Pickup Location</label
                 ><select

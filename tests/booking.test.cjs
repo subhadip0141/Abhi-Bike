@@ -24,7 +24,7 @@ function bookingPage(requestedBike = "") {
   element("bike-select").options = [{ value: "" }, ...bikeNames.map(value => ({ value }))];
   element("booking-form").reportValidity = () => ["customer-name", "customer-phone", "pickup-date", "return-date", "pickup-time", "return-time", "pickup-location", "bike-select"].every(id => element(id).value && !element(id).validation);
   element("terms-form").reportValidity = () => element("terms-agree").checked;
-  const names = { name: "customer-name", phone: "customer-phone", pickupDate: "pickup-date", returnDate: "return-date", pickupTime: "pickup-time", returnTime: "return-time", pickupPeriod: "pickup-period", returnPeriod: "return-period", location: "pickup-location", bike: "bike-select" };
+  const names = { name: "customer-name", phone: "customer-phone", pickupDate: "pickup-date", returnDate: "return-date", pickupTime: "pickup-time", returnTime: "return-time", location: "pickup-location", bike: "bike-select" };
   const context = {
     document: { getElementById: element, querySelectorAll: () => [] },
     window: { location: { search: "?bike=" + encodeURIComponent(requestedBike) }, open: (...args) => opened.push(args) },
@@ -40,9 +40,7 @@ function bookingPage(requestedBike = "") {
     element("pickup-date").value = element("pickup-date").min;
     element("return-date").value = element("pickup-date").min;
     element("pickup-time").value = "09:00";
-    element("return-time").value = "05:00";
-    element("pickup-period").value = "AM";
-    element("return-period").value = "PM";
+    element("return-time").value = "17:00";
   };
   const submit = () => element("booking-form").listeners.submit({ preventDefault() {} });
   const acceptTerms = () => {
@@ -79,12 +77,10 @@ test("valid enquiry opens a correctly encoded WhatsApp URL with the configured b
 });
 
 test("WhatsApp times show AM and PM correctly at midnight, noon and day boundaries", () => {
-  for (const [time, period, formatted] of [["12:00", "AM", "12:00 AM"], ["11:59", "AM", "11:59 AM"], ["12:00", "PM", "12:00 PM"], ["11:05", "PM", "11:05 PM"]]) {
+  for (const [time, formatted] of [["00:00", "12:00 AM"], ["11:59", "11:59 AM"], ["12:00", "12:00 PM"], ["23:05", "11:05 PM"]]) {
     const page = bookingPage(); page.fillValid();
     page.element("pickup-time").value = time;
     page.element("return-time").value = time;
-    page.element("pickup-period").value = period;
-    page.element("return-period").value = period;
     page.element("return-date").value = "2099-12-31";
     page.submit(); page.acceptTerms();
     const message = new URL(page.opened[0][0]).searchParams.get("text");
@@ -103,7 +99,6 @@ test("invalid phone, dates and whitespace-only fields block enquiries", () => {
 test("same-day returns must be after pickup and changing dates clears time errors", () => {
   for (const time of ["08:00", "09:00"]) {
     const page = bookingPage(); page.fillValid();
-    page.element("return-period").value = "AM";
     page.element("return-time").value = time; page.submit();
     assert.equal(page.opened.length, 0);
     assert.match(page.element("return-time").validation, /after pickup time/);
@@ -121,50 +116,11 @@ test("both times are required and editing a time clears an invalid order", () =>
     assert.equal(page.opened.length, 0);
   }
   const page = bookingPage(); page.fillValid();
-  page.element("return-period").value = "AM";
   page.element("return-time").value = "08:00"; page.submit();
   page.element("pickup-time").value = "07:00";
   page.element("pickup-time").listeners.input();
   assert.equal(page.element("return-time").validation, "");
   page.submit(); page.acceptTerms(); assert.equal(page.opened.length, 1);
-});
-
-test("AM/PM selections determine same-day ordering and changing the period clears errors", () => {
-  for (const [pickup, pickupPeriod, returned, returnPeriod, valid] of [
-    ["11:30", "AM", "12:00", "PM", true],
-    ["12:00", "AM", "01:00", "AM", true],
-    ["12:00", "PM", "11:00", "AM", false],
-    ["09:00", "PM", "09:00", "AM", false],
-  ]) {
-    const page = bookingPage(); page.fillValid();
-    page.element("pickup-time").value = pickup;
-    page.element("pickup-period").value = pickupPeriod;
-    page.element("return-time").value = returned;
-    page.element("return-period").value = returnPeriod;
-    page.submit();
-    assert.equal(!!page.element("terms-dialog").open, valid);
-  }
-  const page = bookingPage(); page.fillValid();
-  page.element("return-time").value = "08:00";
-  page.element("return-period").value = "AM";
-  page.submit();
-  assert.match(page.element("return-time").validation, /after pickup time/);
-  page.element("return-period").value = "PM";
-  page.element("return-period").listeners.change();
-  assert.equal(page.element("return-time").validation, "");
-  page.submit(); page.acceptTerms();
-  assert.match(new URL(page.opened[0][0]).searchParams.get("text"), /Return Time: 8:00 PM/);
-});
-
-test("invalid 12-hour times cannot open the terms popup", () => {
-  for (const field of ["pickup-time", "return-time"]) {
-    for (const value of ["00:00", "13:30", "9:60", "9", "abc"]) {
-      const page = bookingPage(); page.fillValid();
-      page.element(field).value = value; page.submit();
-      assert.equal(!!page.element("terms-dialog").open, false);
-      assert.equal(page.opened.length, 0);
-    }
-  }
 });
 
 test("terms require agreement, cancellation preserves the booking and reopening resets consent", () => {

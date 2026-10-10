@@ -103,8 +103,7 @@ async function navigate(file) {
           fill('bike-select', 'Royal Enfield Himalayan 450');
           fill('pickup-date', document.querySelector('#pickup-date').min);
           fill('return-date', document.querySelector('#pickup-date').min);
-          fill('pickup-time', '09:00'); fill('return-time', '05:00');
-          fill('pickup-period', 'AM'); fill('return-period', 'PM');
+          fill('pickup-time', '09:00'); fill('return-time', '17:00');
           document.querySelector('#booking-form').requestSubmit();
           const dialog = document.querySelector('#terms-dialog');
           const content = dialog.querySelector('.terms-content');
@@ -119,12 +118,10 @@ async function navigate(file) {
             fits: bounds.left >= 0 && bounds.right <= innerWidth && bounds.top >= 0 && bounds.bottom <= innerHeight,
             scrolls: content.scrollHeight > content.clientHeight,
             actionsVisible: actions.bottom <= bounds.bottom && actions.top >= bounds.top,
-            iconAligned: Math.abs(icon.right - heading.right) < 1 && icon.width === icon.height,
-            explicitPeriods: ['pickup-period', 'return-period'].every(id => [...document.getElementById(id).options].map(o => o.value).join(',') === 'AM,PM'),
-            readableTimes: ['pickup-time', 'return-time'].every(id => document.getElementById(id).getBoundingClientRect().width >= 100)
+            iconAligned: Math.abs(icon.right - heading.right) < 1 && icon.width === icon.height
           };
         })()`);
-        assert.ok(terms.open && terms.count === 13 && terms.disabled && terms.fits && terms.scrolls && terms.actionsVisible && terms.iconAligned && terms.explicitPeriods && terms.readableTimes, JSON.stringify({width, terms}));
+        assert.ok(terms.open && terms.count === 13 && terms.disabled && terms.fits && terms.scrolls && terms.actionsVisible && terms.iconAligned, JSON.stringify({width, terms}));
         if (width === 390 || width === 1440) {
           const screenshot = await send("Page.captureScreenshot", { format: "png" });
           fs.writeFileSync(path.join(root, "previews", `booking-terms-${width}.png`), Buffer.from(screenshot.data, "base64"));
@@ -171,8 +168,7 @@ async function navigate(file) {
     fill('pickup-location', 'Ashapurna Sarani Road, near Siliguri Junction'); fill('bike-select', 'Royal Enfield Himalayan 450');
     fill('pickup-date', document.querySelector('#pickup-date').min);
     fill('return-date', document.querySelector('#pickup-date').min);
-    fill('pickup-time', '09:00'); fill('return-time', '05:00');
-          fill('pickup-period', 'AM'); fill('return-period', 'PM');
+    fill('pickup-time', '09:00'); fill('return-time', '17:00');
     const form = document.querySelector('#booking-form');
     form.dispatchEvent(new Event('submit', {cancelable: true}));
     if (window.testWhatsAppUrl) throw new Error('WhatsApp opened before accepting terms');
