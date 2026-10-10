@@ -69,11 +69,24 @@ test("valid enquiry opens a correctly encoded WhatsApp URL with the configured b
   assert.equal(url.pathname, "/917001193713");
   assert.match(url.searchParams.get("text"), /Name: Test & Rider/);
   assert.match(url.searchParams.get("text"), /Pickup Location: Ashapurna Sarani Road, near Siliguri Junction/);
-  assert.match(url.searchParams.get("text"), /Pickup Time: 09:00/);
-  assert.match(url.searchParams.get("text"), /Return Time: 17:00/);
+  assert.match(url.searchParams.get("text"), /Pickup Time: 9:00 AM/);
+  assert.match(url.searchParams.get("text"), /Return Time: 5:00 PM/);
   assert.match(url.searchParams.get("text"), /I agree to the TERMS & CONDITIONS/);
   assert.equal(target, "_blank"); assert.equal(features, "noopener,noreferrer");
   assert.equal(page.element("booking-status").hidden, false);
+});
+
+test("WhatsApp times show AM and PM correctly at midnight, noon and day boundaries", () => {
+  for (const [time, formatted] of [["00:00", "12:00 AM"], ["11:59", "11:59 AM"], ["12:00", "12:00 PM"], ["23:05", "11:05 PM"]]) {
+    const page = bookingPage(); page.fillValid();
+    page.element("pickup-time").value = time;
+    page.element("return-time").value = time;
+    page.element("return-date").value = "2099-12-31";
+    page.submit(); page.acceptTerms();
+    const message = new URL(page.opened[0][0]).searchParams.get("text");
+    assert.ok(message.includes(`Pickup Time: ${formatted}\n`));
+    assert.ok(message.includes(`Return Time: ${formatted}\n`));
+  }
 });
 
 test("invalid phone, dates and whitespace-only fields block enquiries", () => {

@@ -191,6 +191,8 @@ async function navigate(file) {
   assert.match(url.searchParams.get("text"), /Test & Rider/);
   assert.match(url.searchParams.get("text"), /Ashapurna Sarani Road, near Siliguri Junction/);
   assert.match(url.searchParams.get("text"), /I agree to the TERMS & CONDITIONS/);
+  assert.match(url.searchParams.get("text"), /Pickup Time: 9:00 AM/);
+  assert.match(url.searchParams.get("text"), /Return Time: 5:00 PM/);
   assert.ok(booking.invalidPhoneBlocked && booking.invalidDateBlocked);
   assert.deepEqual(errors, []);
   fs.mkdirSync(path.join(root, "quality"), { recursive: true });

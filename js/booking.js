@@ -15,6 +15,12 @@ const termsAgree = document.getElementById("terms-agree");
 const termsSubmit = document.getElementById("terms-submit");
 let pendingBookingMessage = "";
 
+function formatBookingTime(value) {
+  const [hours, minutes] = value.split(":");
+  const hour = Number(hours);
+  return `${hour % 12 || 12}:${minutes} ${hour >= 12 ? "PM" : "AM"}`;
+}
+
 function localDate() {
   // Business dates follow India time, regardless of the visitor's time zone.
   return new Intl.DateTimeFormat("en-CA", {
@@ -97,7 +103,7 @@ bookingForm?.addEventListener("submit", (event) => {
   );
   if (!bookingForm.reportValidity()) return;
   const values = new FormData(bookingForm);
-  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent a bike.\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBike: ${values.get("bike")}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${values.get("pickupTime")}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${values.get("returnTime")}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price.\n\nThank you.`;
+  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent a bike.\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBike: ${values.get("bike")}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${formatBookingTime(values.get("pickupTime"))}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${formatBookingTime(values.get("returnTime"))}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price.\n\nThank you.`;
   pendingBookingMessage = message;
   termsAgree.checked = false;
   termsSubmit.disabled = true;
