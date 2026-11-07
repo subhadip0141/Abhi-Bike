@@ -1,0 +1,38 @@
+/* Shared front page topbar, including its mobile glass menu. */
+.site-header,
+.site-header .navbar {
+  background: var(--abhi-background);
+}
+.site-header { border-color: var(--abhi-border); }
+.site-header .navbar { height: 76px; min-height: 76px; }
+.site-header .site-logo { width: 104px; height: 64px; }
+.site-header .desktop-nav a { color: var(--abhi-midnight); }
+.site-header .desktop-nav a.active::after { background: var(--abhi-blue); }
+
+@media (max-width: 767px) {
+  body > .site-header { display: none; }
+  .page-topbar {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin: 18px 18px 0;
+  }
+  .page-topbar .menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+  }
+  /* The fixed bike stage leaves no page height for an overflowing dropdown. */
+  .oc-enabled .page-topbar {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    margin: 0;
+    z-index: 30;
+  }
+  .pill-navbar .menu a[aria-current="page"] {
+    background: rgb(255 255 255 / .12);
+  }
+}

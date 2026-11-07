@@ -14,6 +14,66 @@ const termsForm = document.getElementById("terms-form");
 const termsAgree = document.getElementById("terms-agree");
 const termsSubmit = document.getElementById("terms-submit");
 let pendingBookingMessage = "";
+const cart = window.BikeCart;
+const bikeCapacities = {
+  "Royal Enfield Himalayan 450": "450 cc",
+  "Royal Enfield Himalayan 411": "411 cc",
+  "Royal Enfield Scram 411": "411 cc",
+  "Royal Enfield Hunter 350": "350 cc",
+  "Bajaj Pulsar NS160": "160 cc",
+  "Bajaj Avenger": "220 cc",
+  "TVS Ntorq B.P. Edition": "125 cc",
+  "TVS Ntorq Race Edition": "125 cc",
+  "Suzuki Burgman 125": "125 cc",
+};
+
+function renderCart() {
+  const container = document.getElementById("cart-items");
+  const focused = document.activeElement;
+  const focusName = focused?.dataset?.cartBike;
+  const focusAction = focused?.dataset?.cartAction;
+  container.replaceChildren();
+  const items = cart.getItems();
+  for (const item of items) {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    const title = document.createElement("h4");
+    title.textContent = item.name;
+    const capacity = document.createElement("span");
+    capacity.className = "cart-bike-cc";
+    capacity.textContent = bikeCapacities[item.name];
+    capacity.setAttribute("aria-label", `Engine capacity: ${bikeCapacities[item.name]}`);
+    const controls = document.createElement("div");
+    controls.className = "cart-controls";
+    const button = (label, action) => {
+      const control = document.createElement("button");
+      control.type = "button";
+      control.textContent = label;
+      control.dataset.cartBike = item.name;
+      control.dataset.cartAction = action;
+      control.setAttribute("aria-label", `${action} ${item.name}`);
+      control.addEventListener("click", () => cart.remove(item.name));
+      return control;
+    };
+    const remove = button("Remove", "Remove");
+    remove.className = "cart-remove";
+    controls.append(remove);
+    row.append(title, capacity, controls);
+    container.append(row);
+  }
+  const count = cart.count();
+  document.getElementById("cart-summary").textContent = count
+    ? `${count} bike${count === 1 ? "" : "s"} in your cart`
+    : "Your cart is empty. Browse the fleet to add bikes.";
+  document.getElementById("cart-storage-warning").hidden = cart.isPersistent();
+  document.getElementById("cart-error").hidden = true;
+  if (focusName) {
+    const next = [...container.querySelectorAll("button")].find(button => button.dataset.cartBike === focusName && button.dataset.cartAction === focusAction && !button.disabled);
+    (next || container.querySelector("button:not(:disabled)") || document.getElementById("cart-browse")).focus();
+  }
+  if (termsDialog.open) termsDialog.close();
+  statusMessage.hidden = true;
+}
 
 function formatBookingTime(value) {
   const [hours, minutes] = value.split(":");
@@ -54,22 +114,12 @@ function syncDates() {
   syncTimes();
 }
 if (bookingForm) {
-  const bikeDropdown = document.getElementById("bike-select");
-  const selectedBikeNote = document.getElementById("selected-bike");
   const requestedBike = new URLSearchParams(window.location.search).get("bike");
-  if (
-    [...bikeDropdown.options].some((option) => option.value === requestedBike)
-  ) {
-    bikeDropdown.value = requestedBike;
+  if (cart.names.includes(requestedBike)) {
+    cart.add(requestedBike);
   }
-  const showSelectedBike = () => {
-    selectedBikeNote.hidden = !bikeDropdown.value;
-    selectedBikeNote.textContent = bikeDropdown.value
-      ? `Your selected ride: ${bikeDropdown.value}`
-      : "";
-  };
-  showSelectedBike();
-  bikeDropdown.addEventListener("change", showSelectedBike);
+  cart.subscribe(renderCart);
+  renderCart();
   syncDates();
   pickupDate.addEventListener("change", syncDates);
   returnDate.addEventListener("change", syncDates);
@@ -102,8 +152,16 @@ bookingForm?.addEventListener("submit", (event) => {
     locationInput.value.trim() ? "" : "Select your pickup location.",
   );
   if (!bookingForm.reportValidity()) return;
+  if (!cart.count()) {
+    const error = document.getElementById("cart-error");
+    error.textContent = "Add at least one bike to your cart before booking.";
+    error.hidden = false;
+    document.getElementById("cart-browse").focus();
+    return;
+  }
   const values = new FormData(bookingForm);
-  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent a bike.\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBike: ${values.get("bike")}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${formatBookingTime(values.get("pickupTime"))}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${formatBookingTime(values.get("returnTime"))}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price.\n\nThank you.`;
+  const bikes = cart.getItems().map(item => `- ${item.name}`).join("\n");
+  const message = `Hello ABHI BIKE RENTAL 👋\n\nI would like to rent ${cart.count()} bike(s).\n\nName: ${values.get("name").trim()}\nWhatsApp: ${values.get("phone").trim()}\nBikes:\n${bikes}\nTotal bikes: ${cart.count()}\nPickup Date: ${values.get("pickupDate")}\nPickup Time: ${formatBookingTime(values.get("pickupTime"))}\nReturn Date: ${values.get("returnDate")}\nReturn Time: ${formatBookingTime(values.get("returnTime"))}\nPickup Location: ${values.get("location").trim()}\n\nPlease let me know the availability and rental price for all bikes.\n\nThank you.`;
   pendingBookingMessage = message;
   termsAgree.checked = false;
   termsSubmit.disabled = true;

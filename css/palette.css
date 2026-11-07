@@ -1,0 +1,73 @@
+/* Source: ABHI_BIKE_RENTAL_COLOR_PALETTE.txt.
+   Shared color tokens for every page. Small white button labels use Deep Blue
+   for contrast; promotional booking buttons use navy with white text. */
+:root {
+  --abhi-blue: #0078FF;
+  --abhi-deep-blue: #0051CC;
+  --abhi-sky: #00D2FF;
+  --abhi-midnight: #001A4D;
+  --abhi-green: #00B050;
+  --abhi-forest: #008A3D;
+  --abhi-light-green: #4ADE80;
+  --abhi-mint: #E8FBEF;
+  --abhi-orange: #FF9800;
+  --abhi-yellow: #FFC107;
+  --abhi-red: #FF1A1A;
+  --abhi-button: #012851;
+  --abhi-peach: #FFEADD;
+  --abhi-ink: #0F172A;
+  --abhi-slate: #475569;
+  --abhi-border: #E2E8F0;
+  --abhi-background: #F8FAFC;
+  --abhi-white: #FFFFFF;
+  --abhi-soft-blue: #EEF6FF;
+  color-scheme: light;
+}
+body { background: var(--abhi-background); color: var(--abhi-ink); }
+.desktop-nav a, .desktop-nav a.active { color: var(--abhi-midnight); }
+.desktop-nav a.active::after { background: var(--abhi-blue); }
+.button-nav, .button-green, .bike-bottom a, .bike-bottom button, .fleet-grid .bike-bottom a, .fleet-grid .bike-bottom button, .oc-book {
+  background: var(--abhi-button); border-color: var(--abhi-button); color: var(--abhi-white);
+}
+.button-nav:hover, .button-green:hover, .bike-bottom a:hover, .bike-bottom button:hover, .fleet-grid .bike-bottom a:hover, .fleet-grid .bike-bottom button:hover, .oc-book:hover {
+  background: var(--abhi-midnight); border-color: var(--abhi-midnight); color: var(--abhi-white);
+}
+.button-outline, .button-glass { border-color: var(--abhi-forest); color: var(--abhi-ink); }
+.button-outline:hover, .button-glass:hover { background: var(--abhi-mint); border-color: var(--abhi-forest); color: var(--abhi-ink); }
+.booking-icon, .booking-page .selected-bike { background: var(--abhi-mint); color: var(--abhi-ink); }
+.booking-icon .lucide, .booking-gateway li > .lucide, .location .lucide, .hero-features .lucide, .why-card > .lucide, .location-copy > .lucide { color: var(--abhi-forest); }
+.contact-method > .lucide, .pickup-note > .lucide { color: var(--abhi-blue); }
+.contact-method a { color: var(--abhi-deep-blue); }
+.form-status { color: var(--abhi-ink); }
+input:focus-visible, select:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible { outline-color: var(--abhi-deep-blue); }
+input[type="checkbox"] { accent-color: var(--abhi-deep-blue); }
+/* Full-width midnight footer, with content aligned to the page container. */
+body .footer.container {
+  width: 100%; max-width: none; margin-top: 64px;
+  padding: 48px max(48px, calc((100% - 1280px) / 2)) 0;
+  background: var(--abhi-midnight); color: var(--abhi-white);
+}
+body .footer.container :is(h2, p, span, nav a, .footer-contact a, .footer-contact p) { color: var(--abhi-white); }
+body .footer.container a:hover { color: var(--abhi-sky); }
+body .footer.container .footer-bottom { border-color: rgb(255 255 255 / .2); }
+.frontpage {
+  --home-bg: var(--abhi-background);
+  --home-surface: var(--abhi-soft-blue);
+  --home-text: var(--abhi-ink);
+  --home-muted: var(--abhi-slate);
+  --home-border: var(--abhi-border);
+  --home-accent: var(--abhi-deep-blue);
+}
+.frontpage .desktop-nav a, .frontpage .desktop-nav a.active { color: var(--abhi-midnight); }
+.frontpage .desktop-nav a.active::after { background: var(--abhi-blue); }
+.frontpage .home-hero .home-primary { background: var(--abhi-deep-blue); border-color: var(--abhi-deep-blue); color: var(--abhi-white); }
+.frontpage .home-hero .home-primary:hover { background: var(--abhi-midnight); border-color: var(--abhi-midnight); color: var(--abhi-white); }
+.home-benefits .lucide, .home-process li > .lucide { color: var(--abhi-forest); }
+.home-process li > .lucide { background: var(--abhi-mint); }
+.home-review-heading > .lucide { color: var(--abhi-blue); }
+.oc-enabled .site-header { background: rgb(255 255 255 / .93); }
+.oc-book { border: 1px solid transparent; }
+@media (max-width: 767px) {
+  body .footer.container { margin-top: 48px; padding: 40px 18px 82px; }
+  .frontpage .footer.container, .booking-page .footer.container { padding-bottom: 0; }
+}

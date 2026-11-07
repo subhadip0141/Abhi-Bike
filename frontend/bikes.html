@@ -3,30 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f2f7fb" />
+    <meta name="theme-color" content="#F8FAFC" />
     <meta
       name="description"
       content="Find your ride in Darjeeling. Explore Royal Enfield motorcycles, Bajaj bikes and TVS or Suzuki scooters with ABHI BIKE RENTAL. Enquire on WhatsApp for availability and pricing."
     />
     <title>Our Bikes | ABHI BIKE RENTAL, Darjeeling</title>
     <link rel="icon" href="../assets/images/logo/favicon.png" type="image/png" />
-    <link rel="preload" as="image" href="../assets/images/gallery/mountain_bikes.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="../assets/images/bikes/Himalayan_450.webp" type="image/webp" fetchpriority="high" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/animations.css" />
     <script src="../js/vendor/lucide.min.js" defer></script>
     <script src="../js/main.js" defer></script>
+    <script src="../js/cart.js" defer></script>
+    <script src="../js/cart-ui.js" defer></script>
     <link rel="stylesheet" href="../css/bikes.css" />
     <script src="../js/bikes.js" defer></script>
     <link rel="stylesheet" href="../css/booking.css" />
     <link rel="stylesheet" href="../css/brand.css" />
+    <link rel="stylesheet" href="../css/opposing-carousel.css" />
+    <script src="../js/opposing-carousel.js" defer></script>
+    <link rel="stylesheet" href="../css/pill-menu.css" />
+    <script src="../js/pill-menu.js" defer></script>
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/topbar.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body class="fleet-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="navbar glass container" aria-label="Main navigation">
         <a class="wordmark" href="frontpage.html">
-          <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
+          <img class="site-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
         </a>
         <div class="desktop-nav">
           <a href="frontpage.html">Home</a
@@ -54,7 +63,57 @@
         </div>
       </nav>
     </header>
+    <nav class="pill-navbar page-topbar" id="pill-navbar" aria-label="Mobile navigation">
+              <div class="pill">
+                <a class="brand" href="frontpage.html" aria-label="ABHI Bike Rental home">
+                  <img class="pill-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
+                </a>
+                <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pill-menu">
+                  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="menu" id="pill-menu" aria-hidden="true" inert>
+                <a href="frontpage.html">Home</a>
+                <a href="bikes.html" aria-current="page">Bikes</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html">Book on WhatsApp</a>
+              </div>
+            </nav>
     <main id="main">
+      <div class="oc-split" id="bike-carousel" role="region" aria-roledescription="carousel" aria-label="Explore our bikes" hidden>
+        <div class="oc-content">
+          <section class="oc-panel oc-panel--names" aria-label="Bike names">
+            <div class="oc-names"></div>
+            <span class="oc-hairline oc-hairline--top" aria-hidden="true"></span>
+            <span class="oc-hairline oc-hairline--bottom" aria-hidden="true"></span>
+          </section>
+          <section class="oc-panel oc-panel--photos" aria-label="Bike photos">
+            <div class="oc-carousel"></div>
+          </section>
+        </div>
+        <div class="oc-toolbar">
+          <div class="oc-guidance"><span class="oc-counter"></span><span>Scroll, swipe or use arrow keys</span></div>
+          <div class="oc-actions">
+            <button class="oc-previous" type="button" aria-label="Previous bike"><span aria-hidden="true">&uarr;</span></button>
+            <button class="oc-next" type="button" aria-label="Next bike"><span aria-hidden="true">&darr;</span></button>
+            <a class="oc-book" href="booking.html">
+              <span class="oc-book__icon" aria-hidden="true">
+                <svg viewBox="0 0 40 28" width="32" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <circle cx="9" cy="20" r="6" />
+                  <circle cx="32" cy="20" r="6" />
+                  <path d="M9 20l7-11h9l7 11M13 14h10l-5 6H9M24 5h4l4 15M12 8h6M21 9l3-4M28 8h5M5 11H1M5 7H3" />
+                </svg>
+              </span>
+              <span class="oc-book__label">Add to cart</span>
+              <span class="oc-book__arrow" aria-hidden="true">&nearr;</span>
+            </a>
+            <a class="cart-link" href="booking.html#cart">Cart (0)</a>
+          </div>
+        </div>
+        <p class="visually-hidden oc-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+      <div class="fleet-fallback">
       <section class="fleet-hero" aria-labelledby="fleet-title">
         
         
@@ -351,7 +410,7 @@
               />
             </div>
             <div class="bike-info">
-              <p class="bike-category">CRUISER<span>Confirm engine</span></p>
+              <p class="bike-category">CRUISER<span>220 cc</span></p>
               <h3>Bajaj <br />Avenger</h3>
               <p>Settle in and take the scenic route.</p>
               <div class="bike-bottom">
@@ -593,6 +652,7 @@
           </details>
         </div>
       </section>
+      </div>
     </main>
     <footer class="footer container">
       <div class="footer-top">

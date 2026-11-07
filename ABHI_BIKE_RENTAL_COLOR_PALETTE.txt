@@ -1,0 +1,64 @@
+ABHI BIKE RENTAL — WEBSITE COLOR PALETTE
+=========================================
+Brand theme: Adventure • Nature • Trust • Modern
+Tagline: Ride More | Explore More | Live Freely
+
+1. PRIMARY COLORS
+-----------------
+Brand Blue       #0078FF   Primary buttons, links, key brand elements
+Deep Blue        #0051CC   Navigation, active states, dark sections
+Sky Blue         #00D2FF   Highlights, icons, gradient accents
+Midnight Blue    #001A4D   Footer, dark overlays, strong contrast
+
+2. SECONDARY COLORS
+-------------------
+Nature Green     #00B050   Secondary buttons, success messages
+Forest Green     #008A3D   Hover states, service highlights, icons
+Light Green      #4ADE80   Subtle accents, chips, tags
+Mint Green       #E8FBEF   Light green backgrounds and panels
+
+3. ACCENT COLORS
+----------------
+Sunrise Orange   #FF9800   Offers, highlights, small accents
+Golden Yellow    #FFC107   Badges, seasonal offers, key information
+CTA Red          #FF1A1A   Booking/promotional CTAs (use sparingly)
+Soft Peach       #FFEADD   Warm background accents, notifications
+
+4. NEUTRAL & UI COLORS
+----------------------
+Ink Dark         #0F172A   Headings and primary text
+Slate Gray       #475569   Secondary text and descriptions
+Border Gray      #E2E8F0   Borders, dividers, inputs
+Light Background #F8FAFC   Main website background
+Surface White    #FFFFFF   Cards, forms, modals
+Soft Blue BG     #EEF6FF   Alternate sections and subtle highlights
+
+5. SUGGESTED WEBSITE COLOR USAGE
+--------------------------------
+Page background:      #F8FAFC
+Cards/forms:          #FFFFFF
+Main heading:         #0F172A
+Body text:            #475569
+Navigation:           #001A4D
+Primary button:       #0078FF (white text)
+Secondary button:     #008A3D (white text)
+Booking highlight:    #FF1A1A (white text)
+Borders:              #E2E8F0
+Footer background:    #001A4D (white text)
+
+6. BRAND GRADIENT (DECORATIVE USE)
+----------------------------------
+#0078FF -> #00D2FF -> #00B050 -> #FFC107 -> #FF1A1A
+Use for occasional decorative graphics, not every button or text area.
+
+7. DESIGN TIPS
+--------------
+- Keep most page surfaces white or light gray for readability.
+- Make blue the dominant interactive color.
+- Use green for nature, routes and secondary actions.
+- Reserve red and yellow for limited high-visibility accents.
+- For the Darjeeling background photo, add a subtle dark overlay behind light text.
+- On translucent/liquid-glass cards, check text contrast against the image.
+
+Note: These are recommended harmonized website colors inspired by the logo,
+not exact digitally sampled measurements from it.
