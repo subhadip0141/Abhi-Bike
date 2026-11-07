@@ -3,27 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f2f7fb" />
+    <meta name="theme-color" content="#F8FAFC" />
     <meta
       name="description"
       content="Explore Darjeeling on two wheels with ABHI BIKE RENTAL. Choose an adventure motorcycle or scooter and enquire about your mountain ride on WhatsApp."
     />
     <title>ABHI BIKE RENTAL | Explore Darjeeling on Two Wheels</title>
+    <link rel="preload" href="../assets/images/gallery/Background.webp" as="image" fetchpriority="high" />
+    <link rel="preload" href="../assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="../assets/images/logo/favicon.png" type="image/png" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
     <link rel="stylesheet" href="../css/animations.css" />
     <script src="../js/vendor/lucide.min.js" defer></script>
     <script src="../js/main.js" defer></script>
-    <link rel="stylesheet" href="../css/booking.css" />
+    <script src="../js/cart.js" defer></script>
+    <script src="../js/cart-ui.js" defer></script>
     <link rel="stylesheet" href="../css/brand.css" />
+    <link rel="stylesheet" href="../css/pill-menu.css" />
+    <script src="../js/pill-menu.js" defer></script>
+    <link rel="stylesheet" href="../css/frontpage.css" />
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/topbar.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
-  <body>
+  <body class="frontpage">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="navbar glass container" aria-label="Main navigation">
         <a class="wordmark" href="frontpage.html">
-          <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
+          <img class="site-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
         </a>
         <div class="desktop-nav">
           <a class="active" href="frontpage.html" aria-current="page">Home</a
@@ -53,341 +62,99 @@
     </header>
 
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        
-        
-        <div class="hero-layout container">
-          <div class="hero-copy">
-            <p class="eyebrow location">
-              <i data-lucide="map-pin" aria-hidden="true"></i>SILIGURI, WEST
-              BENGAL
-            </p>
-            <h1 id="hero-title">
-              Explore <span>Darjeeling</span><br />on Two Wheels
-            </h1>
-            <p class="hero-description">Discover mountain roads, tea gardens and Himalayan views. Find your bike and explore Darjeeling at your own pace.</p>
-            <div class="hero-actions">
-              <a class="button button-light" href="bikes.html"
-                >Explore Bikes <span aria-hidden="true">↗</span></a
-              ><a class="button button-glass" href="booking.html"
-                ><i data-lucide="message-circle" aria-hidden="true"></i>Book on
-                WhatsApp</a
-              >
-            </div>
-            
+      <section class="home-hero" aria-labelledby="hero-title">
+        <div class="hero-visual">
+          <img class="hero-photo" src="../assets/images/gallery/Background.webp" alt="" width="941" height="1672" fetchpriority="high" />
+          <nav class="pill-navbar" id="pill-navbar" aria-label="Mobile navigation">
+              <div class="pill">
+                <a class="brand" href="frontpage.html" aria-label="ABHI Bike Rental home">
+                  <img class="pill-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
+                </a>
+                <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pill-menu">
+                  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="menu" id="pill-menu" aria-hidden="true" inert>
+                <a href="frontpage.html" aria-current="page">Home</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html">Book on WhatsApp</a>
+              </div>
+            </nav>
+        </div>
+        <div class="home-hero-shade" aria-hidden="true"></div>
+        <div class="container home-hero-content">
+          <p class="home-eyebrow">Siliguri to the hills</p>
+          <h1 id="hero-title">Take the<br />scenic way.</h1>
+          <p>Mountain mornings. Tea garden stops. Explore Darjeeling at your own pace with ABHI Bike Rental.</p>
+          <div class="home-hero-actions">
+            <a class="button home-primary" href="booking.html">Plan your ride <span aria-hidden="true">&#8599;</span></a>
+            <a class="home-hero-link" href="bikes.html">Explore our bikes <span aria-hidden="true">&#8594;</span></a>
           </div>
-          <img
-            class="hero-photo"
-            src="../assets/images/gallery/trains.webp"
-            alt="A blue mountain train winding through tea gardens beneath snow-covered peaks at sunset"
-            width="1448"
-            height="1086"
-            fetchpriority="high"
-          />
         </div>
       </section>
 
-      <section class="feature-strip" aria-label="Rental benefits">
-        <ul class="container">
-          <li>
-            <i data-lucide="message-circle" aria-hidden="true"></i>Easy Booking
-            via WhatsApp
-          </li>
-          <li>
-            <i data-lucide="wallet" aria-hidden="true"></i>Affordable Rental
-            Options
-          </li>
-          <li>
-            <i data-lucide="wrench" aria-hidden="true"></i>Well Maintained Bikes
-          </li>
-          <li>
-            <i data-lucide="route" aria-hidden="true"></i>Local Route Guidance
-          </li>
-          <li>
-            <i data-lucide="headphones" aria-hidden="true"></i>Support in
-            Darjeeling
-          </li>
-        </ul>
+      <section class="home-benefits container" aria-label="Rental benefits">
+        <div><i data-lucide="message-circle" aria-hidden="true"></i><span>Easy enquiries<strong>Book through WhatsApp</strong></span></div>
+        <div><i data-lucide="wrench" aria-hidden="true"></i><span>Ready for your journey<strong>Well maintained rides</strong></span></div>
+        <div><i data-lucide="route" aria-hidden="true"></i><span>A little local knowledge<strong>Help with your route</strong></span></div>
       </section>
 
-      <section
-        class="bikes-section section container"
-        aria-labelledby="bikes-title"
-      >
-        <div class="section-heading reveal">
-          <h2 id="bikes-title">Choose Your Ride</h2>
-          <p>From adventure motorcycles to comfortable scooters.</p>
+      <section class="home-section container" aria-labelledby="experience-title">
+        <div class="home-heading reveal">
+          <h2 id="experience-title">Less rush. More Darjeeling.</h2>
+          <p>Make room for the stops you didn't plan. The hills are best explored at your own pace.</p>
         </div>
-        <div class="bike-grid">
-          <article class="bike-card reveal">
-            <div class="bike-image">
-              <img
-                src="../assets/images/bikes/Himalayan_450.webp"
-                alt="Royal Enfield Himalayan 450"
-                width="760"
-                height="570"
-                loading="lazy"
-              />
-            </div>
-            <div class="bike-info">
-              <p class="bike-category">ADVENTURE <span>450 cc</span></p>
-              <h3>Royal Enfield<br />Himalayan 450</h3>
-              <p>Top model. Built for the road less travelled.</p>
-              <div class="bike-bottom">
-                <h4>&#8377;1,600 / day</h4
-                ><a
-                  href="booking.html?bike=Royal%20Enfield%20Himalayan%20450"
-                  data-bike="Royal Enfield Himalayan 450"
-                >
-                  Book Now <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </div>
+        <div class="home-destinations">
+          <article class="home-destination home-destination-wide reveal">
+            <img src="../assets/images/gallery/trains.webp" alt="A blue mountain train among tea gardens and Himalayan peaks" width="1448" height="1086" loading="lazy" />
+            <div><h3>A mountain escape</h3><p>Head towards Darjeeling for hill roads, tea gardens and a change of pace.</p></div>
           </article>
-          <article class="bike-card reveal">
-            <div class="bike-image">
-              <img
-                src="../assets/images/bikes/Hunter_350.webp"
-                alt="Royal Enfield Hunter 350"
-                width="760"
-                height="570"
-                loading="lazy"
-              />
-            </div>
-            <div class="bike-info">
-              <p class="bike-category">ROADSTER <span>350 cc</span></p>
-              <h3>Royal Enfield<br />Hunter 350</h3>
-              <p>Top model. A relaxed ride through the hills.</p>
-              <div class="bike-bottom">
-                <h4>&#8377;1,400 / day</h4
-                ><a
-                  href="booking.html?bike=Royal%20Enfield%20Hunter%20350"
-                  data-bike="Royal Enfield Hunter 350"
-                >
-                  Book Now <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-          <article class="bike-card reveal">
-            <div class="bike-image">
-              <img
-                src="../assets/images/bikes/Ntorq_125.webp"
-                alt="TVS Ntorq B.P. Edition scooter"
-                width="760"
-                height="570"
-                loading="lazy"
-              />
-            </div>
-            <div class="bike-info">
-              <p class="bike-category">SPORT SCOOTER <span>125 cc</span></p>
-              <h3>TVS<br />Ntorq B.P. Edition</h3>
-              <p>Top model. Easy exploring, every day.</p>
-              <div class="bike-bottom">
-                <h4>&#8377;800 / day</h4
-                ><a
-                  href="booking.html?bike=TVS%20Ntorq%20B.P.%20Edition"
-                  data-bike="TVS Ntorq B.P. Edition"
-                >
-                  Book Now <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-          <article class="bike-card reveal">
-            <div class="bike-image">
-              <img
-                src="../assets/images/bikes/Bugman_125.webp"
-                alt="Suzuki Burgman 125 scooter"
-                width="760"
-                height="570"
-                loading="lazy"
-              />
-            </div>
-            <div class="bike-info">
-              <p class="bike-category">COMFORT SCOOTER <span>125 cc</span></p>
-              <h3>Suzuki<br />Burgman 125</h3>
-              <p>Take the scenic way, comfortably.</p>
-              <div class="bike-bottom">
-                <h4>&#8377;800 / day</h4
-                ><a
-                  href="booking.html?bike=Suzuki%20Burgman%20125"
-                  data-bike="Suzuki Burgman 125"
-                >
-                  Book Now <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="section-action">
-          <a class="button button-outline" href="bikes.html"
-            >View All Bikes <span aria-hidden="true">↗</span></a
-          >
-        </div>
-      </section>
-
-      <section
-        class="why-section section container"
-        aria-labelledby="why-title"
-      >
-        <div class="section-heading reveal">
-          <h2 id="why-title">Why Ride With ABHI?</h2>
-          <p>A little local knowledge. A better mountain journey.</p>
-        </div>
-        <ul class="hero-features">
-              <li>
-                <i data-lucide="badge-check" aria-hidden="true"></i>Well
-                Maintained<br />Bikes
-              </li>
-              <li>
-                <i data-lucide="shield-check" aria-hidden="true"></i>Safe
-                &amp;<br />Reliable
-              </li>
-              <li>
-                <img class="lucide mountain-icon" src="../assets/images/icons/mountain.png" alt="" aria-hidden="true" width="20" height="20" />Perfect for<br />Mountain
-                Rides
-              </li>
-            </ul>
-<div class="why-grid">
-          <article class="why-card glass reveal">
-            <i data-lucide="message-circle" aria-hidden="true"></i>
-            <h3>Easy WhatsApp Booking</h3>
-            <p>Your next ride starts with a conversation.</p>
-          </article>
-          <article class="why-card glass reveal">
-            <i data-lucide="wrench" aria-hidden="true"></i>
-            <h3>Clean &amp; Maintained Bikes</h3>
-            <p>A cared-for ride for your time in the hills.</p>
-          </article>
-          <article class="why-card glass reveal">
-            <i data-lucide="calendar-days" aria-hidden="true"></i>
-            <h3>Flexible Rental Options</h3>
-            <p>Share your plans. Find a ride that fits.</p>
-          </article>
-          <article class="why-card glass reveal">
-            <i data-lucide="map-pin" aria-hidden="true"></i>
-            <h3>Local Darjeeling Support</h3>
-            <p>Local help, close to where you ride.</p>
-          </article>
-          <article class="why-card glass reveal">
-            <i data-lucide="route" aria-hidden="true"></i>
-            <h3>Scenic Route Guidance</h3>
-            <p>Discover more along the way.</p>
+          <article class="home-destination reveal">
+            <img src="../assets/images/gallery/fog-darjeeling.webp" alt="Misty scenery in the Darjeeling hills" width="1440" height="1080" loading="lazy" />
+            <div><h3>Room to wander</h3><p>Pause for a cup of tea. Take in a viewpoint. Enjoy the journey between stops.</p></div>
           </article>
         </div>
       </section>
 
-      <section class="experience container" aria-labelledby="experience-title">
-        <img
-          src="../assets/images/gallery/tourist_places.webp"
-          alt="Illustrated tourist destinations near Siliguri, including Darjeeling, Gangtok and Kalimpong"
-          width="1254"
-          height="1254"
-          loading="lazy"
-        />
-        <div class="experience-shade" aria-hidden="true"></div>
-        <div class="experience-copy reveal">
-          <h2 id="experience-title">Ride Beyond<br />the City</h2>
-          <p>
-            Explore mountain roads, tea gardens, viewpoints and peaceful hill
-            routes around Darjeeling.
-          </p>
-          <ul class="chips">
-            <li>Mountain Roads</li>
-            <li>Tea Gardens</li>
-            <li>Viewpoints</li>
-            <li>Local Routes</li>
-            <li>Weekend Trips</li>
-          </ul>
-          <a class="button button-light" href="bikes.html"
-            >Explore Our Bikes <span aria-hidden="true">↗</span></a
-          >
+      <section class="home-planning container home-section" aria-labelledby="how-title">
+        <div class="home-planning-copy reveal">
+          <p class="home-eyebrow">A good ride starts here</p>
+          <h2 id="how-title">Your plans.<br />Our local know-how.</h2>
+          <p>From choosing a ride to finding the pickup point, we'll help you get the details sorted before you set off.</p>
+          <a class="home-text-link" href="about.html">Meet ABHI Bike Rental <span aria-hidden="true">&#8599;</span></a>
+        </div>
+        <ol class="home-process">
+          <li class="reveal"><i data-lucide="calendar-days" aria-hidden="true"></i><div><h3>Tell us about your trip</h3><p>Share your dates, preferred ride and pickup location through the booking page.</p></div></li>
+          <li class="reveal"><i data-lucide="message-circle" aria-hidden="true"></i><div><h3>Get the details confirmed</h3><p>Check availability, rental price and pickup arrangements with us on WhatsApp.</p></div></li>
+          <li class="reveal"><i data-lucide="map-pin" aria-hidden="true"></i><div><h3>Pick up in Siliguri</h3><p>Collect your ride, ask about the route and head towards your next mountain stop.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="home-reviews container reveal" aria-labelledby="reviews-title">
+        <div class="home-review-heading"><i data-lucide="message-circle" aria-hidden="true"></i><h2 id="reviews-title">Rider reviews</h2><p>Get to know ABHI Bike Rental through our Google Maps listing.</p></div>
+        <div class="home-review-source"><span class="home-source-label">Google Maps</span><h3>Real journeys.<br />Shared by riders.</h3><p>Read customer feedback on Google, or share your own experience after your trip.</p><a class="button home-primary" href="https://www.google.com/maps/place/?q=place_id:ChIJQRBojXlB5DkROOzZxL9hzrA" target="_blank" rel="noopener noreferrer">View Google reviews <span aria-hidden="true">&#8599;</span></a></div>
+      </section>
+
+      <section class="home-faq home-section container" aria-labelledby="faq-title">
+        <div class="home-heading reveal"><h2 id="faq-title">Before you set off</h2><p>A few useful details for planning your rental.</p></div>
+        <div class="home-faq-list">
+          <details><summary>Where do I pick up my ride?</summary><p>Pickup is in Siliguri. Confirm your pickup time and location with our team on WhatsApp before you travel. <a href="https://www.google.com/maps/place/?q=place_id:ChIJQRBojXlB5DkROOzZxL9hzrA" target="_blank" rel="noopener noreferrer">Find ABHI Bike Rental on Google Maps.</a></p></details>
+          <details><summary>How do I confirm a booking?</summary><p>Use our booking page to choose a ride and enter your trip details. Send the enquiry on WhatsApp, where our team confirms availability, pricing and pickup arrangements.</p></details>
+          <details><summary>Can you help me choose a ride?</summary><p>Yes. Tell us where you're heading, your rental dates and your riding experience. We'll help you check the available options for your plans.</p></details>
+          <details><summary>What should I check before pickup?</summary><p>Confirm the required documents, rental terms, deposit, fuel policy and helmet arrangements with our team before collecting your ride.</p></details>
         </div>
       </section>
 
-      <section
-        class="how-section section container"
-        aria-labelledby="how-title"
-      >
-        <div class="section-heading reveal">
-          <h2 id="how-title">Your Ride. Three Simple Steps.</h2>
-          <p>Less planning. More exploring.</p>
-        </div>
-        <div class="home-booking-layout"><ol class="steps">
-          <li class="reveal">
-            <span class="step-number">01</span>
-            <h3>Choose Your Bike</h3>
-            <p>Find the right ride for your journey.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-number">02</span>
-            <h3>Send Your Details</h3>
-            <p>Tell us when and where you want to ride.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-number">03</span>
-            <h3>Confirm on WhatsApp</h3>
-            <p>Check availability, pricing and pickup details.</p>
-          </li>
-        </ol><aside
-            class="booking-card glass booking-gateway"
-            aria-labelledby="booking-gateway-title"
-          >
-            <span class="booking-icon"
-              ><img class="lucide mountain-icon" src="../assets/images/icons/mountain.png" alt="" aria-hidden="true" width="20" height="20" /></span>
-            <h2 id="booking-gateway-title">Your Next Ride<br />Starts Here</h2>
-            <p>
-              Choose your bike, share your dates and pickup location, and send
-              your enquiry on WhatsApp.
-            </p>
-            <ul>
-              <li>
-                <i data-lucide="calendar-days" aria-hidden="true"></i>Rental
-                dates that fit your plans
-              </li>
-              <li>
-                <i data-lucide="map-pin" aria-hidden="true"></i>Pickup in
-                Siliguri 
-              </li>
-              <li>
-                <i data-lucide="message-circle" aria-hidden="true"></i
-                >Availability confirmed on WhatsApp
-              </li>
-            </ul>
-            <a class="button button-green" href="booking.html"
-              >Book Your Ride <span aria-hidden="true">↗</span></a
-            >
-            <p class="form-note">
-              <i data-lucide="lock-keyhole" aria-hidden="true"></i>No payment
-              required to enquire
-            </p>
-          </aside></div>
-      </section>
-
-      <section
-        class="final-cta container glass reveal"
-        aria-labelledby="cta-title"
-      >
-        <img class="lucide mountain-icon cta-mountain" src="../assets/images/icons/mountain.png" alt="" aria-hidden="true" width="20" height="20" />
-        <h2 id="cta-title">Ready to Ride Darjeeling?</h2>
-        <p>Pick your bike and begin your mountain journey.</p>
-        <div class="cta-actions">
-          <a class="button button-green" href="booking.html"
-            ><i data-lucide="message-circle" aria-hidden="true"></i>Book on
-            WhatsApp <span aria-hidden="true">↗</span></a
-          ><a class="button button-outline" href="bikes.html"
-            >View Bikes <span aria-hidden="true">↗</span></a
-          >
-        </div>
-      </section>
+      <section class="home-contact container reveal" aria-labelledby="cta-title"><div><h2 id="cta-title">The hills can wait.<br />Your questions don't have to.</h2><p>Talk to us about pickup, rental options or your itinerary.</p></div><a class="button home-primary" href="contact.html">Get in touch <span aria-hidden="true">&#8599;</span></a></section>
     </main>
 
     <footer class="footer container">
       <div class="footer-top">
         <div class="footer-brand">
           <a class="wordmark" href="frontpage.html"
-            ><img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" loading="lazy" /></a
+            ><img class="site-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" loading="lazy" /></a
           >
           <p>
             Bike rentals for exploring Darjeeling and the surrounding hills.
@@ -423,9 +190,6 @@
         <span>Made for mountain journeys.</span>
       </div>
     </footer>
-    <a class="mobile-book button button-green" href="booking.html"
-      ><i data-lucide="message-circle" aria-hidden="true"></i>Book Your Bike
-      <span aria-hidden="true">↗</span></a
-    >
+
   </body>
 </html>

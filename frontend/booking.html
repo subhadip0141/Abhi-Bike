@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f2f7fb" />
+    <meta name="theme-color" content="#F8FAFC" />
     <meta
       name="description"
       content="Book your Darjeeling bike rental with ABHI BIKE RENTAL. Choose your bike, rental dates and pickup location, then send your enquiry on WhatsApp."
@@ -16,17 +16,24 @@
     <link rel="stylesheet" href="../css/animations.css" />
     <script src="../js/vendor/lucide.min.js" defer></script>
     <script src="../js/main.js" defer></script>
+    <script src="../js/cart.js" defer></script>
+    <script src="../js/cart-ui.js" defer></script>
     <script src="../js/booking.js" defer></script>
     <link rel="stylesheet" href="../css/bikes.css" />
     <link rel="stylesheet" href="../css/booking.css" />
     <link rel="stylesheet" href="../css/brand.css" />
+    <link rel="stylesheet" href="../css/pill-menu.css" />
+    <script src="../js/pill-menu.js" defer></script>
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/topbar.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body class="booking-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="navbar glass container" aria-label="Main navigation">
         <a class="wordmark" href="frontpage.html">
-          <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
+          <img class="site-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
         </a>
         <div class="desktop-nav">
           <a href="frontpage.html">Home</a><a href="bikes.html">Bikes</a
@@ -52,6 +59,23 @@
         </div>
       </nav>
     </header>
+    <nav class="pill-navbar page-topbar" id="pill-navbar" aria-label="Mobile navigation">
+              <div class="pill">
+                <a class="brand" href="frontpage.html" aria-label="ABHI Bike Rental home">
+                  <img class="pill-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
+                </a>
+                <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pill-menu">
+                  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="menu" id="pill-menu" aria-hidden="true" inert>
+                <a href="frontpage.html">Home</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="#booking" aria-current="page">Book on WhatsApp</a>
+              </div>
+            </nav>
     <main id="main">
       <section class="hero booking-hero" aria-labelledby="hero-title">
         
@@ -65,7 +89,7 @@
             </p>
             <h1 id="hero-title">Book Your<br /><span>Mountain Ride</span></h1>
             <p class="hero-description">
-              Choose a bike, tell us when you'd like to ride and send your
+              Add your bikes to the cart, tell us when you'd like to ride and send your
               details on WhatsApp. We'll confirm availability, pricing and
               pickup arrangements.
             </p>
@@ -100,13 +124,6 @@
             <a class="booking-back" href="bikes.html"
               >Browse All Bikes <span aria-hidden="true">↗</span></a
             >
-            <p
-              class="selected-bike"
-              id="selected-bike"
-              role="status"
-              aria-live="polite"
-              hidden
-            ></p>
           <div class="booking-photo"><picture>
           <source
             type="image/webp"
@@ -152,6 +169,15 @@
               </style></noscript
             >
             <form id="booking-form">
+              <section class="cart-section" id="cart" aria-labelledby="cart-title">
+                <h3 id="cart-title">Your bike cart</h3>
+                <p id="cart-summary" role="status" aria-live="polite"></p>
+                <div id="cart-items"></div>
+                <a class="cart-browse" id="cart-browse" href="bikes.html">Browse bikes &amp; add more</a>
+                <p>Each bike can be added once. All bikes use the dates and pickup details below. Availability and prices are confirmed on WhatsApp.</p>
+                <p id="cart-error" class="cart-error" role="alert" hidden></p>
+                <p id="cart-storage-warning" hidden>Cart saving is unavailable in this browser. Keep this page open to complete your enquiry.</p>
+              </section>
               <div class="field-row">
                 <div class="field">
                   <label for="customer-name">Your Name</label
@@ -220,21 +246,6 @@
                   <option value="Ashapurna Sarani Road, near Siliguri Junction">
                     Ashapurna Sarani Road, near Siliguri Junction
                   </option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="bike-select">Select Bike</label
-                ><select id="bike-select" name="bike" required>
-                  <option value="" disabled selected>Choose your ride</option>
-                  <option>Royal Enfield Himalayan 450</option>
-                  <option>Royal Enfield Himalayan 411</option>
-                  <option>Royal Enfield Scram 411</option>
-                  <option>Royal Enfield Hunter 350</option>
-                  <option>Bajaj Pulsar NS160</option>
-                  <option>TVS Ntorq B.P. Edition</option>
-                  <option>TVS Ntorq Race Edition</option>
-                  <option>Suzuki Burgman 125</option>
-                  <option>Bajaj Avenger</option>
                 </select>
               </div>
               <button class="button button-green submit-button" type="submit">

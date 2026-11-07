@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f2f7fb" />
+    <meta name="theme-color" content="#F8FAFC" />
     <meta
       name="description"
       content="Get to know ABHI BIKE RENTAL in Siliguri. Well-maintained bikes, easy WhatsApp booking and local support for your mountain journey."
@@ -16,17 +16,24 @@
     <link rel="stylesheet" href="../css/animations.css" />
     <script src="../js/vendor/lucide.min.js" defer></script>
     <script src="../js/main.js" defer></script>
+    <script src="../js/cart.js" defer></script>
+    <script src="../js/cart-ui.js" defer></script>
     <link rel="stylesheet" href="../css/bikes.css" />
     <link rel="stylesheet" href="../css/pages.css" />
     <link rel="stylesheet" href="../css/booking.css" />
     <link rel="stylesheet" href="../css/brand.css" />
+    <link rel="stylesheet" href="../css/pill-menu.css" />
+    <script src="../js/pill-menu.js" defer></script>
+    <link rel="stylesheet" href="../css/palette.css" />
+    <link rel="stylesheet" href="../css/topbar.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body class="about-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <nav class="navbar glass container" aria-label="Main navigation">
         <a class="wordmark" href="frontpage.html">
-          <img class="site-logo" src="../assets/images/logo/logo.png" alt="ABHI Bike Rental" width="1254" height="774" />
+          <img class="site-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
         </a>
         <div class="desktop-nav">
           <a href="frontpage.html">Home</a><a href="bikes.html">Bikes</a
@@ -54,6 +61,23 @@
         </div>
       </nav>
     </header>
+    <nav class="pill-navbar page-topbar" id="pill-navbar" aria-label="Mobile navigation">
+              <div class="pill">
+                <a class="brand" href="frontpage.html" aria-label="ABHI Bike Rental home">
+                  <img class="pill-logo" src="../assets/images/logo/frontpage-logo.webp" alt="ABHI Bike Rental" width="288" height="178" />
+                </a>
+                <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="pill-menu">
+                  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div class="menu" id="pill-menu" aria-hidden="true" inert>
+                <a href="frontpage.html">Home</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="about.html" aria-current="page">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="booking.html">Book on WhatsApp</a>
+              </div>
+            </nav>
     <main id="main">
       <section class="fleet-hero page-hero" aria-labelledby="page-title">
         
